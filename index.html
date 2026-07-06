@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grasslands Resort — Kaziranga | Where Wilderness Meets Warm Hospitality</title>
+<meta name="description" content="Grasslands Resort on NH-37, beside Kaziranga National Park. 21 Executive Rooms, a Presidential Suite, multi-cuisine dining, pool, conference hall and an open lawn for 1000 guests.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#14291F;          /* deep wetland green */
+  --pine-2:#1D3A2B;
+  --ink:#1B241E;
+  --mist:#EDEFE2;          /* pale sage — page base */
+  --paper:#F6F6EC;
+  --gold:#C29A45;          /* muga silk gold */
+  --gold-soft:#D9BC77;
+  --grass:#8A7A3C;
+  --line:rgba(27,36,30,.14);
+  --line-dark:rgba(246,246,236,.16);
+  --radius:14px;
+  --wrap:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Figtree',system-ui,sans-serif;
+  background:var(--mist);
+  color:var(--ink);
+  line-height:1.65;
+  font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--pine)}
+h1,h2,h3,.serif{font-family:'Marcellus',serif;font-weight:400;line-height:1.12;letter-spacing:.005em}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:600;color:var(--grass);display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+section{padding:110px 0}
+.section-head{max-width:640px;margin-bottom:64px}
+.section-head h2{font-size:clamp(32px,4.2vw,48px);margin-top:18px;color:var(--pine)}
+.section-head p{margin-top:16px;color:rgba(27,36,30,.72);max-width:56ch}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .sway,.sway-2,.sway-3,.mist-drift,.bird{animation:none !important}
+}
+
+/* ---------- NAV ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  transition:background .35s ease, box-shadow .35s ease;
+}
+header .bar{
+  max-width:var(--wrap);margin:0 auto;padding:20px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+header.solid{background:rgba(20,41,31,.96);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line-dark)}
+.logo{display:flex;align-items:center;gap:12px;color:var(--paper)}
+.logo svg{width:34px;height:34px}
+.logo .name{font-family:'Marcellus',serif;font-size:21px;letter-spacing:.04em}
+.logo .sub{display:block;font-family:'Figtree',sans-serif;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft);margin-top:1px}
+nav.links{display:flex;gap:34px;align-items:center}
+nav.links a{
+  color:rgba(246,246,236,.85);font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;
+  padding:4px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
+}
+nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 26px;border-radius:999px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  border:1px solid var(--gold);color:var(--pine);background:var(--gold);
+  transition:background .25s,color .25s,transform .25s;cursor:pointer;
+}
+.btn:hover{background:transparent;color:var(--gold);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:rgba(246,246,236,.5)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn.dark{background:var(--pine);border-color:var(--pine);color:var(--paper)}
+.btn.dark:hover{background:transparent;color:var(--pine)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.menu-toggle span{display:block;width:24px;height:2px;background:var(--paper);margin:5px 0;transition:.3s}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+  background:var(--pine);
+  padding:0;
+}
+.hero-photo{position:absolute;inset:0;background:url('images/hero.jpg') center 62%/cover no-repeat;pointer-events:none}
+.hero-scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,28,21,.66) 0%,rgba(14,28,21,.36) 42%,rgba(14,28,21,.5) 70%,rgba(16,33,24,.9) 100%);
+}
+.hero-inner{position:relative;z-index:5;width:100%;max-width:var(--wrap);margin:0 auto;padding:130px 28px 220px;text-align:center}
+.hero .eyebrow{justify-content:center;color:var(--gold-soft)}
+.hero .eyebrow::after{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{
+  font-size:clamp(40px,6.4vw,82px);color:var(--paper);
+  max-width:16ch;margin:26px auto 0;
+  text-shadow:0 2px 30px rgba(10,20,15,.4);
+}
+.hero h1 em{font-style:normal;color:var(--gold-soft)}
+.hero p.lede{
+  margin:26px auto 0;max-width:58ch;color:rgba(246,246,236,.88);font-size:18px;
+}
+.hero-cta{margin-top:42px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero .btn.ghost{color:var(--paper);border-color:rgba(246,246,236,.55)}
+.hero .btn.ghost:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
+.hero .btn.dark{background:var(--gold);border-color:var(--gold);color:var(--pine)}
+.hero .btn.dark:hover{background:transparent;color:var(--gold-soft);border-color:var(--gold-soft)}
+.scene{position:absolute;inset:auto 0 0 0;pointer-events:none}
+.scene svg{width:100%;height:auto}
+.sway{transform-origin:50% 100%;animation:sway 7s ease-in-out infinite alternate}
+.sway-2{transform-origin:50% 100%;animation:sway 9s ease-in-out -3s infinite alternate}
+.sway-3{transform-origin:50% 100%;animation:sway 11s ease-in-out -6s infinite alternate}
+@keyframes sway{from{transform:rotate(-.6deg)}to{transform:rotate(.6deg)}}
+.bird{animation:fly 34s linear infinite}
+@keyframes fly{from{transform:translateX(-8vw)}to{transform:translateX(108vw)}}
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;
+  color:rgba(246,246,236,.85);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-cue::after{content:"";width:1px;height:34px;background:linear-gradient(rgba(246,246,236,.8),transparent)}
+
+/* ---------- STAT BAND ---------- */
+.stats{background:var(--pine);color:var(--paper);padding:0}
+.stats .grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat{
+  padding:44px 34px;border-left:1px solid var(--line-dark);
+}
+.stat:first-child{border-left:none}
+.stat .num{font-family:'Marcellus',serif;font-size:44px;color:var(--gold-soft);line-height:1}
+.stat .lbl{margin-top:10px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,246,236,.66)}
+
+/* ---------- ABOUT ---------- */
+.about{background:var(--paper)}
+.about .cols{display:grid;grid-template-columns:1.2fr .8fr;gap:72px;align-items:start}
+.about .lead{font-family:'Marcellus',serif;font-size:clamp(22px,2.6vw,29px);color:var(--pine);line-height:1.4}
+.about .body-copy{margin-top:26px;color:rgba(27,36,30,.74)}
+.about .body-copy p+p{margin-top:16px}
+.getting-card{
+  background:var(--pine);color:var(--paper);border-radius:var(--radius);
+  padding:38px 34px;position:sticky;top:110px;
+}
+.getting-card h3{font-size:21px;color:var(--gold-soft)}
+.getting-card ul{list-style:none;margin-top:22px}
+.getting-card li{
+  display:flex;justify-content:space-between;gap:18px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--line-dark);font-size:14.5px;
+}
+.getting-card li:last-child{border:none}
+.getting-card li span:last-child{font-family:'Marcellus',serif;color:var(--gold-soft);white-space:nowrap}
+.getting-card .note{margin-top:16px;font-size:12.5px;color:rgba(246,246,236,.6)}
+
+/* ---------- ROOMS ---------- */
+.rooms{background:var(--mist)}
+.room-card{
+  display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
+  border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+  margin-bottom:48px;
+}
+.room-card.flip .room-visual{order:2}
+.room-visual{position:relative;min-height:420px;background:var(--pine)}
+.room-visual svg{position:absolute;inset:0;width:100%;height:100%}
+.room-tag{
+  position:absolute;top:26px;left:26px;z-index:2;
+  background:rgba(246,246,236,.92);color:var(--pine);
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  padding:9px 16px;border-radius:999px;
+}
+.room-body{padding:58px 56px}
+.room-body h3{font-size:clamp(26px,3vw,34px);color:var(--pine)}
+.room-body .desc{margin-top:18px;color:rgba(27,36,30,.72)}
+.amenity-grid{
+  margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;
+}
+.amenity{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:rgba(27,36,30,.8)}
+.amenity svg{width:17px;height:17px;flex:none;stroke:var(--grass);margin-top:3px}
+details.more{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+details.more summary{
+  cursor:pointer;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--grass);
+  list-style:none;display:flex;align-items:center;gap:8px;
+}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"+";font-size:16px;transition:transform .3s}
+details.more[open] summary::after{transform:rotate(45deg)}
+details.more ul{margin-top:14px;columns:2;column-gap:32px;font-size:13.5px;color:rgba(27,36,30,.7);padding-left:18px}
+details.more li{margin-bottom:6px;break-inside:avoid}
+.room-body .btn{margin-top:30px}
+
+/* ---------- EVENTS ---------- */
+.events{background:var(--pine);color:var(--paper);position:relative;overflow:hidden}
+.events .section-head h2{color:var(--paper)}
+.events .section-head p{color:rgba(246,246,236,.7)}
+.events .eyebrow{color:var(--gold-soft)}
+.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.event-card{
+  border:1px solid var(--line-dark);border-radius:var(--radius);padding:44px 40px;
+  background:rgba(246,246,236,.03);
+}
+.event-card h3{font-size:26px;color:var(--gold-soft)}
+.event-card p{margin-top:14px;color:rgba(246,246,236,.72);font-size:15px}
+.cap-rows{margin-top:28px}
+.cap-row{padding:16px 0;border-top:1px solid var(--line-dark)}
+.cap-row .cap-top{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;letter-spacing:.04em}
+.cap-row .cap-top strong{font-family:'Marcellus',serif;font-size:22px;color:var(--gold-soft);font-weight:400}
+.cap-bar{margin-top:10px;height:3px;background:rgba(246,246,236,.12);border-radius:2px;overflow:hidden}
+.cap-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--grass),var(--gold-soft));width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.in .cap-bar i{width:var(--w)}
+.occasions{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.occasions span{
+  border:1px solid var(--line-dark);border-radius:999px;padding:8px 16px;font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(246,246,236,.8);
+}
+.lawn-num{margin-top:26px;display:flex;align-items:baseline;gap:14px}
+.lawn-num strong{font-family:'Marcellus',serif;font-size:64px;color:var(--gold-soft);font-weight:400;line-height:1}
+.lawn-num span{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,246,236,.62);max-width:14ch;line-height:1.5}
+.events-note{margin-top:34px;color:rgba(246,246,236,.62);font-size:14px;max-width:70ch}
+
+/* ---------- FACILITIES ---------- */
+.facilities{background:var(--paper)}
+.fac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.fac-card{
+  border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;background:var(--mist);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.fac-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,41,31,.35)}
+.fac-card .ico{
+  width:52px;height:52px;border-radius:50%;background:var(--pine);
+  display:grid;place-items:center;margin-bottom:22px;
+}
+.fac-card .ico svg{width:24px;height:24px;stroke:var(--gold-soft)}
+.fac-card h3{font-size:20px;color:var(--pine)}
+.fac-card ul{list-style:none;margin-top:16px}
+.fac-card li{
+  font-size:14px;color:rgba(27,36,30,.74);padding:7px 0 7px 18px;position:relative;
+}
+.fac-card li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.fac-card li em{font-style:normal;color:rgba(27,36,30,.5);font-size:12.5px}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--mist)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.contact-info h3{font-size:20px;color:var(--pine);margin-top:34px}
+.contact-info h3:first-of-type{margin-top:0}
+.contact-info p{margin-top:8px;color:rgba(27,36,30,.74);font-size:15px}
+.contact-info .big{font-family:'Marcellus',serif;font-size:24px;color:var(--pine);margin-top:6px}
+.form-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:46px 44px;
+}
+.form-card h3{font-size:24px;color:var(--pine);margin-bottom:26px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.field label{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--grass);margin-bottom:8px}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:8px;background:var(--mist);
+  font-family:inherit;font-size:15px;color:var(--ink);transition:border-color .25s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.field.full{grid-column:1/-1}
+.form-note{font-size:12.5px;color:rgba(27,36,30,.55);margin-top:14px}
+
+/* map + reviews */
+.map-row{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;margin-top:64px}
+.map-frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--paper)}
+.map-frame iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+.review-card{
+  background:var(--pine);color:var(--paper);border-radius:var(--radius);
+  padding:42px 38px;display:flex;flex-direction:column;justify-content:center;
+}
+.review-card h3{font-size:22px;color:var(--gold-soft)}
+.review-score{display:flex;align-items:baseline;gap:14px;margin-top:22px}
+.review-score strong{font-family:'Marcellus',serif;font-size:56px;font-weight:400;color:var(--gold-soft);line-height:1}
+.stars{display:flex;gap:4px}
+.stars svg{width:19px;height:19px;fill:var(--gold);}
+.stars svg.dim{fill:rgba(246,246,236,.25)}
+.review-card .count{margin-top:8px;font-size:13.5px;color:rgba(246,246,236,.65)}
+.review-card p.quote{margin-top:20px;font-size:14.5px;color:rgba(246,246,236,.8);font-style:italic;border-left:2px solid var(--gold);padding-left:16px}
+.review-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:14px}
+.review-card .btn{background:var(--gold);border-color:var(--gold);color:var(--pine)}
+.review-card .btn:hover{background:transparent;color:var(--gold-soft)}
+.review-card .btn.ghost{background:transparent;color:var(--paper);border-color:rgba(246,246,236,.4)}
+.review-card .btn.ghost:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--pine);color:rgba(246,246,236,.7);position:relative;overflow:hidden}
+footer .wrap{padding-top:70px;padding-bottom:40px;position:relative;z-index:2}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line-dark)}
+footer .logo .name{color:var(--paper)}
+footer p.small{margin-top:16px;font-size:14px;max-width:38ch}
+footer h4{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:10px;font-size:14px}
+footer ul a:hover{color:var(--gold-soft)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(246,246,236,.45)}
+
+/* ---------- PHOTO COMPONENTS ---------- */
+.room-visual img.main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.room-visual .thumb{
+  position:absolute;right:22px;bottom:22px;z-index:2;width:34%;max-width:190px;
+  border-radius:10px;border:3px solid var(--paper);box-shadow:0 14px 30px -12px rgba(20,41,31,.5);
+}
+.about-photo{border-radius:var(--radius);overflow:hidden;margin-bottom:26px;border:1px solid var(--line)}
+.about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.about-photo.wide{margin:34px 0 0}
+.about-photo.wide img{aspect-ratio:16/8}
+.leisure{background:var(--paper)}
+.leisure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.leisure-card{
+  border-radius:var(--radius);overflow:hidden;background:var(--mist);border:1px solid var(--line);
+  display:flex;flex-direction:column;transition:transform .35s ease,box-shadow .35s ease;
+}
+.leisure-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,41,31,.35)}
+.leisure-card img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.leisure-card .txt{padding:26px 28px 30px}
+.leisure-card h3{font-size:20px;color:var(--pine)}
+.leisure-card p{margin-top:10px;font-size:14px;color:rgba(27,36,30,.72)}
+.event-img{border-radius:10px;overflow:hidden;margin-top:26px}
+.event-img img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
+.gallery-sec{background:var(--mist)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:16px}
+.g-item{border-radius:12px;overflow:hidden;position:relative}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.g-item:hover img{transform:scale(1.05)}
+.g-item .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:26px 18px 14px;
+  background:linear-gradient(transparent,rgba(16,33,24,.72));
+  color:var(--paper);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:0;transition:opacity .4s ease;
+}
+.g-item:hover .cap{opacity:1}
+.g-item.tall{grid-row:span 2}
+.g-item.wide{grid-column:span 2}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:980px){
+  section{padding:84px 0}
+  .about .cols,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .getting-card{position:static}
+  .room-card{grid-template-columns:1fr}
+  .room-card.flip .room-visual{order:0}
+  .room-visual{min-height:300px}
+  .room-body{padding:42px 34px}
+  .event-grid{grid-template-columns:1fr}
+  .fac-grid{grid-template-columns:1fr 1fr}
+  .stats .grid{grid-template-columns:1fr 1fr}
+  .stat{border-top:1px solid var(--line-dark)}
+  .leisure-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .map-row{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  nav.links{
+    position:fixed;inset:0;background:var(--pine);flex-direction:column;justify-content:center;
+    gap:30px;transform:translateY(-100%);transition:transform .4s ease;z-index:55;
+  }
+  nav.links.open{transform:none}
+  nav.links a{font-size:17px}
+  .menu-toggle{display:block;position:relative;z-index:56}
+  .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-toggle.open span:nth-child(2){opacity:0}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  header .bar .btn{display:none}
+  .fac-grid,.form-row{grid-template-columns:1fr}
+  .amenity-grid{grid-template-columns:1fr}
+  details.more ul{columns:1}
+  .hero-inner{padding-bottom:190px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="header">
+  <div class="bar">
+    <a class="logo" href="#top" aria-label="Grasslands Resort — home">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 36 C20 24 18 14 12 6" stroke="#D9BC77" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20 36 C20 22 22 12 29 5" stroke="#D9BC77" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20 36 C20 26 20 16 20 9" stroke="#C29A45" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span><span class="name">Grasslands</span><span class="sub">Resort · Kaziranga</span></span>
+    </a>
+    <nav class="links" id="navLinks" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#events">Events</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="#contact">Book your stay</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-photo" role="img" aria-label="Cottages of Grasslands Resort under emerald roofs, surrounded by gardens"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <!-- birds -->
+  <svg class="bird" style="position:absolute;top:16%;left:0;width:70px;opacity:.55;z-index:4" viewBox="0 0 70 20" fill="none" aria-hidden="true">
+    <path d="M2 12 Q8 4 14 12 Q20 4 26 12" stroke="#EDEFE2" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M40 8 Q45 2 50 8 Q55 2 60 8" stroke="#EDEFE2" stroke-width="1.4" stroke-linecap="round"/>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">NH-37 · Beside Kaziranga National Park · Assam</p>
+    <h1>Where Kaziranga's <em>wilderness</em> meets warm hospitality</h1>
+    <p class="lede">A peaceful retreat beside a UNESCO World Heritage Site — moments from the tall elephant grass and the world's greatest stronghold of the one-horned rhinoceros.</p>
+    <div class="hero-cta">
+      <a class="btn dark" href="#rooms">Explore rooms</a>
+      <a class="btn ghost" href="#events">Plan an event</a>
+    </div>
+  </div>
+
+  <!-- layered grassland scene -->
+  <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 1440 340" preserveAspectRatio="xMidYMax slice">
+      <!-- rhino silhouette on the horizon -->
+      <g transform="translate(880 118) scale(1.05)" fill="#0C1B13" opacity=".92">
+        <path d="M6 62 Q2 54 8 47 L12 44 Q10 34 15 28 Q18 35 19 40 Q28 32 42 29 L46 21 Q50 18 51 24 L50 30 Q70 26 92 30 Q114 34 122 46 Q128 55 127 66 Q126 76 118 82 L119 104 L110 104 L109 84 Q92 90 72 88 L71 104 L62 104 L61 87 Q46 84 36 76 Q28 82 20 81 L20 104 L11 104 L11 78 Q5 72 6 62 Z"/>
+      </g>
+      <!-- mid grass band -->
+      <g class="sway-2" opacity=".92">
+        <path d="M0 250 Q360 214 720 240 T1440 236 V340 H0 Z" fill="#2A4433"/>
+        <g stroke="#2A4433" stroke-width="3" stroke-linecap="round" fill="none">
+          <path d="M120 246 C118 214 112 192 100 172"/><path d="M132 248 C134 216 140 196 152 178"/>
+          <path d="M420 240 C418 208 412 188 402 170"/><path d="M436 242 C438 212 444 192 456 176"/>
+          <path d="M760 240 C758 210 752 190 742 172"/><path d="M775 242 C777 212 783 194 794 178"/>
+          <path d="M1080 238 C1078 208 1072 188 1062 170"/><path d="M1095 240 C1097 210 1103 192 1114 176"/>
+          <path d="M1320 240 C1318 210 1312 190 1302 174"/>
+        </g>
+      </g>
+      <!-- front grass band -->
+      <g class="sway">
+        <path d="M0 292 Q360 262 720 286 T1440 280 V340 H0 Z" fill="#14291F"/>
+        <g stroke="#14291F" stroke-width="4" stroke-linecap="round" fill="none">
+          <path d="M60 290 C56 250 48 224 32 200"/><path d="M78 292 C82 254 92 230 110 210"/>
+          <path d="M250 288 C246 250 238 226 224 204"/><path d="M268 290 C272 254 282 232 298 214"/>
+          <path d="M560 288 C556 250 548 226 534 206"/><path d="M578 290 C582 254 592 232 608 214"/>
+          <path d="M900 286 C896 248 888 224 874 204"/><path d="M918 288 C922 252 932 230 948 212"/>
+          <path d="M1180 286 C1176 248 1168 224 1154 204"/><path d="M1198 288 C1202 252 1212 230 1228 212"/>
+          <path d="M1390 288 C1386 252 1378 228 1366 208"/>
+        </g>
+        <!-- gold seed heads -->
+        <g fill="#C29A45" opacity=".85">
+          <ellipse cx="32" cy="197" rx="4" ry="10" transform="rotate(-24 32 197)"/>
+          <ellipse cx="224" cy="201" rx="4" ry="10" transform="rotate(-22 224 201)"/>
+          <ellipse cx="608" cy="211" rx="4" ry="10" transform="rotate(20 608 211)"/>
+          <ellipse cx="874" cy="201" rx="4" ry="10" transform="rotate(-22 874 201)"/>
+          <ellipse cx="1228" cy="209" rx="4" ry="10" transform="rotate(20 1228 209)"/>
+        </g>
+      </g>
+      <!-- ground -->
+      <rect x="0" y="316" width="1440" height="24" fill="#14291F"/>
+    </svg>
+  </div>
+  <p class="scroll-cue">Scroll</p>
+</section>
+
+<!-- ============ STATS ============ -->
+<div class="stats" aria-label="Resort at a glance">
+  <div class="grid">
+    <div class="stat reveal"><div class="num">21</div><div class="lbl">Executive Rooms</div></div>
+    <div class="stat reveal"><div class="num">01</div><div class="lbl">Presidential Suite</div></div>
+    <div class="stat reveal"><div class="num">150</div><div class="lbl">Conference Seats</div></div>
+    <div class="stat reveal"><div class="num">1000</div><div class="lbl">Open-Lawn Guests</div></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">About the resort</p>
+      <h2>A retreat on the edge of the wild</h2>
+    </div>
+    <div class="cols">
+      <div class="reveal">
+        <p class="lead">Nestled along National Highway 37, right beside the world-renowned Kaziranga National Park, Grasslands Resort blends nature, relaxation and warm Assamese hospitality.</p>
+        <div class="body-copy">
+          <p>Our prime location places you moments away from the lush wilderness of this UNESCO World Heritage Site — an ideal base for wildlife enthusiasts, family vacationers, corporate groups and guests celebrating special occasions.</p>
+          <p>The resort features 21 well-appointed Executive Rooms overlooking landscaped gardens, alongside an elegant Presidential Suite with a separate bedroom and living room. Days unwind at the swimming pool, in the gardens, or over a culinary journey at our multi-cuisine restaurant — local Assamese flavours, Indian classics and international favourites.</p>
+          <p>From banquet dinners to boardroom meetings and open-air weddings, our team ensures every stay — and every occasion — is comfortable, memorable, and truly close to nature.</p>
+        </div>
+        <div class="about-photo wide">
+          <img src="images/about-cottage.jpg" alt="Garden-facing cottages with emerald roofs at Grasslands Resort" loading="lazy">
+        </div>
+      </div>
+      <aside class="reveal">
+        <div class="about-photo">
+          <img src="images/about-gazebo.jpg" alt="Gazebo and lawns in the resort gardens" loading="lazy">
+        </div>
+        <div class="getting-card" style="position:static">
+        <h3>Getting here</h3>
+        <ul>
+          <li><span>Kaziranga National Park</span><span>Next door</span></li>
+          <li><span>Elephant &amp; jeep safari ranges</span><span>Nearby</span></li>
+          <li><span>Jorhat (rail &amp; air)</span><span>~90 km</span></li>
+          <li><span>Guwahati (rail &amp; air)</span><span>~220 km</span></li>
+        </ul>
+        <p class="note">Airport, railway station and bus stand pick-up &amp; drop available, along with guided sightseeing tours on request (extra charges applicable).</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROOMS ============ -->
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Stay with us</p>
+      <h2>Rooms &amp; suites</h2>
+      <p>Soft lighting, warm textures and garden views — every room is designed for rest after a day in the grasslands.</p>
+    </div>
+
+    <!-- Executive Room -->
+    <article class="room-card reveal">
+      <div class="room-visual">
+        <span class="room-tag">Garden view</span>
+        <img class="main" src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
+        <img class="thumb" src="images/room-twin.jpg" alt="Twin-bedded Executive Room" loading="lazy">
+      </div>
+      <div class="room-body">
+        <h3>Executive Rooms</h3>
+        <p class="desc">Thoughtfully designed for comfort and elegance, each of our 21 Executive Rooms opens to soothing garden views. A king-size bed, a cosy sitting area and a work desk make it perfect for couples, families and corporate travellers alike.</p>
+        <div class="amenity-grid">
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M5 10V7h14v3"/></svg>King-size bed &amp; premium bedding</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3v3M5 8l2 2M19 8l-2 2M4 15h16M6 15a6 6 0 0112 0"/></svg>Garden-facing view</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M9 21h6"/></svg>Flat-screen TV, satellite channels</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12a7 7 0 0114 0M2 12a10 10 0 0120 0M12 16h.01"/></svg>Wi-Fi internet access</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M17 8h2a2 2 0 010 4h-2M5 8h12v6a4 4 0 01-4 4H9a4 4 0 01-4-4V8z"/></svg>Tea &amp; coffee kettle, daily water</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M4 6l16 12M20 6L4 18"/></svg>Air conditioning</div>
+        </div>
+        <details class="more">
+          <summary>Full amenity list</summary>
+          <ul>
+            <li>Chair/sofa with coffee &amp; side table</li>
+            <li>Complimentary toiletries — soap, shampoo, conditioner, body lotion &amp; shower cap</li>
+            <li>Soft fresh towels &amp; slippers</li>
+            <li>Complimentary coffee sachets, tea bags, creamer &amp; sugar</li>
+            <li>Complimentary packaged drinking water, replenished daily</li>
+            <li>Work desk with chair — laptop friendly</li>
+            <li>Wardrobe for storage</li>
+            <li>Hair dryer &amp; iron on request</li>
+          </ul>
+        </details>
+        <a class="btn dark" href="#contact">Enquire for rates</a>
+      </div>
+    </article>
+
+    <!-- Presidential Suite -->
+    <article class="room-card flip reveal">
+      <div class="room-visual">
+        <span class="room-tag">Bedroom + living room</span>
+        <img class="main" src="images/suite-bed.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
+        <img class="thumb" src="images/suite-living.jpg" alt="Presidential Suite living room with sofas" loading="lazy">
+      </div>
+      <div class="room-body">
+        <h3>Presidential Suite</h3>
+        <p class="desc">Elevated comfort with a separate bedroom and living area, serene views and a warm, inviting ambience. The well-appointed bathroom features a Jacuzzi bathtub — ideal for unwinding after a day of wildlife exploration. Perfect for honeymooners, families and VIP guests.</p>
+        <div class="amenity-grid">
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12h16v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5zM4 12V6a2 2 0 012-2h2v4"/></svg>Jacuzzi bathtub, hot &amp; cold water</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18h18M6 12V8a2 2 0 012-2h8a2 2 0 012 2v4"/></svg>Separate living room &amp; lounge</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 9h12"/></svg>Mini-bar &amp; fridge <em style="font-style:normal;color:rgba(27,36,30,.5)">(chargeable)</em></div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M5 10V7h14v3"/></svg>Plush king bed, premium bedding</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12a7 7 0 0114 0M2 12a10 10 0 0120 0M12 16h.01"/></svg>Wi-Fi internet access</div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M9 21h6"/></svg>Flat-screen TV, satellite channels</div>
+        </div>
+        <details class="more">
+          <summary>Full amenity list</summary>
+          <ul>
+            <li>Air conditioning throughout</li>
+            <li>Sofa, chair and centre/side tables in the living area</li>
+            <li>Complimentary premium toiletries</li>
+            <li>Soft fresh towels &amp; slippers</li>
+            <li>Electric kettle with coffee sachets, tea bags, creamer &amp; sugar</li>
+            <li>Complimentary packaged drinking water, replenished daily</li>
+            <li>Wardrobe for storage</li>
+            <li>Hair dryer &amp; iron on request</li>
+          </ul>
+        </details>
+        <a class="btn dark" href="#contact">Enquire for rates</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ DINING & LEISURE ============ -->
+<section class="leisure" id="leisure">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Dining &amp; leisure</p>
+      <h2>Slow mornings, long evenings</h2>
+    </div>
+    <div class="leisure-grid">
+      <div class="leisure-card reveal">
+        <img src="images/dining.jpg" alt="Multi-cuisine restaurant with starlit ceiling and draped windows" loading="lazy">
+        <div class="txt">
+          <h3>Multi-cuisine restaurant</h3>
+          <p>Local Assamese flavours, Indian classics and international favourites — served under a starlit ceiling.</p>
+        </div>
+      </div>
+      <div class="leisure-card reveal">
+        <img src="images/pool.jpg" alt="Swimming pool with the Grassland emblem tiled on its floor" loading="lazy">
+        <div class="txt">
+          <h3>Swimming pool</h3>
+          <p>Cool off between safaris in our garden-side pool — the Grasslands emblem tiled beneath the water.</p>
+        </div>
+      </div>
+      <div class="leisure-card reveal">
+        <img src="images/lobby.jpg" alt="Spacious resort lobby with lounge seating" loading="lazy">
+        <div class="txt">
+          <h3>Lounge &amp; gardens</h3>
+          <p>A generous lobby to gather in, landscaped gardens for evening strolls, and a play area for the little ones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="events" id="events">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Meetings, conferences &amp; celebrations</p>
+      <h2>Gather where the grass grows tall</h2>
+      <p>Flexible venues surrounded by the natural beauty of Kaziranga — with customised setups, audio-visual support and refreshments on request.</p>
+    </div>
+    <div class="event-grid">
+      <div class="event-card reveal">
+        <h3>Conference Hall</h3>
+        <p>Ideal for corporate meetings, training sessions, seminars and presentations, with professional facilities and comfortable seating.</p>
+        <div class="cap-rows">
+          <div class="cap-row"><div class="cap-top"><span>Theatre style</span><strong>150 guests</strong></div><div class="cap-bar"><i style="--w:100%"></i></div></div>
+          <div class="cap-row"><div class="cap-top"><span>Cluster style</span><strong>80 guests</strong></div><div class="cap-bar"><i style="--w:53%"></i></div></div>
+          <div class="cap-row"><div class="cap-top"><span>U-shape style</span><strong>50 guests</strong></div><div class="cap-bar"><i style="--w:33%"></i></div></div>
+        </div>
+      </div>
+      <div class="event-card reveal">
+        <h3>Open Lawn</h3>
+        <p>Celebrate under the open sky on our beautifully maintained lawn — ample space, scenic beauty and an unforgettable ambience.</p>
+        <div class="event-img"><img src="images/lawn.jpg" alt="The expansive open lawn framed by palms at Grasslands Resort" loading="lazy"></div>
+        <div class="lawn-num"><strong>1000</strong><span>guests under the open sky</span></div>
+        <div class="occasions">
+          <span>Weddings</span><span>Receptions</span><span>Family gatherings</span>
+          <span>Festive &amp; cultural events</span><span>Corporate dinners</span>
+        </div>
+      </div>
+    </div>
+    <p class="events-note reveal">A banquet hall and a private boardroom are also available, with stage &amp; décor support, catering and seating arrangements, and modern audio-visual facilities for conferences and marriage events.</p>
+  </div>
+</section>
+
+<!-- ============ FACILITIES ============ -->
+<section class="facilities" id="facilities">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Facilities &amp; amenities</p>
+      <h2>Everything a stay should hold</h2>
+      <p>A thoughtful blend of comfort, convenience and leisure for families, couples, corporate guests and group travellers.</p>
+    </div>
+    <div class="fac-grid">
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M5 10V7h14v3"/></svg></div>
+        <h3>Accommodation</h3>
+        <ul>
+          <li>Executive Rooms with garden-facing views</li>
+          <li>Presidential Suite with living area &amp; Jacuzzi</li>
+          <li>Family cottage for small families or groups</li>
+          <li>AC, LCD TV, kettle &amp; work desk in every room</li>
+          <li>Room service <em>(7:00 AM – 11:00 PM)</em></li>
+        </ul>
+      </div>
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M7 3v7a2 2 0 002 2v9M7 3v4M5 3v4M9 3v4M16 3c-1.5 1.5-2 4-2 7h3v11"/></svg></div>
+        <h3>Dining &amp; leisure</h3>
+        <ul>
+          <li>Multi-cuisine restaurant — regional, Indian &amp; international</li>
+          <li>Swimming pool for adults and families</li>
+          <li>Landscaped gardens for peaceful outdoor sitting</li>
+          <li>Kids' play area</li>
+        </ul>
+      </div>
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M8 21h8M12 17v4M4 4h16v9a4 4 0 01-4 4H8a4 4 0 01-4-4V4z"/></svg></div>
+        <h3>Events &amp; meetings</h3>
+        <ul>
+          <li>Banquet hall for dinners &amp; celebrations</li>
+          <li>Boardroom for private meetings</li>
+          <li>Conference &amp; marriage-event arrangements</li>
+          <li>Stage, décor, catering &amp; AV support</li>
+        </ul>
+      </div>
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M2 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M4 16c4-8 12-8 16 0"/></svg></div>
+        <h3>Outdoor spaces</h3>
+        <ul>
+          <li>Large open lawn for weddings &amp; receptions</li>
+          <li>Space for festive, cultural &amp; social events</li>
+          <li>Capacity for up to 1000 guests</li>
+        </ul>
+      </div>
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M5 17h14M6 17l1.5-5h9L18 17M8 12V8a4 4 0 018 0v4M7 21h.01M17 21h.01"/></svg></div>
+        <h3>Travel &amp; transfers</h3>
+        <ul>
+          <li>Airport / railway / bus pick-up &amp; drop <em>(extra cost)</em></li>
+          <li>Sightseeing tours on request <em>(extra cost)</em></li>
+          <li>Travel guidance &amp; support</li>
+        </ul>
+      </div>
+      <div class="fac-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="13" r="6"/><path d="M12 10v3l2 2M9 3h6"/></svg></div>
+        <h3>Guest services</h3>
+        <ul>
+          <li>In-house laundry</li>
+          <li>Ample parking for cars &amp; buses</li>
+          <li>Drivers' accommodation <em>(extra cost)</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery-sec" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Gallery</p>
+      <h2>Around the resort</h2>
+    </div>
+    <div class="gallery reveal">
+      <div class="g-item wide"><img src="images/g-garden.jpg" alt="Cottage gardens with yellow allamanda blooms" loading="lazy"><span class="cap">Cottage gardens</span></div>
+      <div class="g-item tall"><img src="images/g-palms.jpg" alt="Stepping-stone path beneath tall palms" loading="lazy"><span class="cap">Palm walk</span></div>
+      <div class="g-item"><img src="images/g-veranda.jpg" alt="Arched veranda with cane chairs" loading="lazy"><span class="cap">Arched veranda</span></div>
+      <div class="g-item"><img src="images/g-cottage-front.jpg" alt="Garden-facing cottage with white picket fencing" loading="lazy"><span class="cap">Garden cottage</span></div>
+      <div class="g-item"><img src="images/g-path.jpg" alt="Curving stepping-stone path through the lawns" loading="lazy"><span class="cap">Garden paths</span></div>
+      <div class="g-item"><img src="images/g-pool-wide.jpg" alt="Poolside deck beside the green-roofed pavilion" loading="lazy"><span class="cap">Poolside</span></div>
+      <div class="g-item wide"><img src="images/g-entrance.jpg" alt="Resort entrance with elephant sculpture on the lawn" loading="lazy"><span class="cap">The entrance</span></div>
+      <div class="g-item"><img src="images/g-cottages.jpg" alt="Row of emerald-roofed cottages with rose beds" loading="lazy"><span class="cap">Emerald roofs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact us</p>
+      <h2>Plan your Kaziranga escape</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Address</h3>
+        <p class="big">Grasslands Resort</p>
+        <p>National Highway 37, beside Kaziranga National Park<br>Assam, India</p>
+        <h3>Reservations</h3>
+        <p>Phone: <a href="tel:+918170011344" style="color:var(--pine);font-weight:600">+91 81700 11344</a><br>
+        Email: <a href="mailto:grasslandresortskaziranga@gmail.com" style="color:var(--pine);font-weight:600">grasslandresortskaziranga@gmail.com</a></p>
+        <h3>A unit of</h3>
+        <p>Greenlane Hotels &amp; Resorts Pvt Ltd</p>
+      </div>
+      <div class="form-card reveal">
+        <h3>Send an enquiry</h3>
+        <form id="enquiryForm">
+          <div class="form-row">
+            <div class="field"><label for="name">Full name</label><input id="name" type="text" placeholder="Your name" required></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+91"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="in">Check-in</label><input id="in" type="date"></div>
+            <div class="field"><label for="out">Check-out</label><input id="out" type="date"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="type">Interested in</label>
+              <select id="type">
+                <option>Executive Room</option>
+                <option>Presidential Suite</option>
+                <option>Conference / meeting</option>
+                <option>Wedding / celebration</option>
+              </select>
+            </div>
+            <div class="field"><label for="guests">Guests</label><input id="guests" type="number" min="1" placeholder="2"></div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label for="msg">Message</label><textarea id="msg" rows="4" placeholder="Tell us about your plans…"></textarea></div>
+          </div>
+          <button class="btn dark" type="submit">Send enquiry</button>
+          <p class="form-note">Sending opens your email app with the details addressed to grasslandresortskaziranga@gmail.com. Our team responds within one working day.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- map + google reviews -->
+    <div class="map-row reveal">
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=United-21%20Grassland%20Resort%20Kaziranga%20Bagori&z=13&output=embed"
+          title="Map — Grasslands Resort, Kaziranga"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="review-card">
+        <h3>Loved your stay?</h3>
+        <div class="review-score">
+          <strong>4.0</strong>
+          <span class="stars" aria-label="Rated 4 out of 5 on Google">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg class="dim" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          </span>
+        </div>
+        <p class="count">490+ guest reviews on Google</p>
+        <p class="quote">"Beautifully located amidst nature… their hospitality made us feel like family."</p>
+        <div class="review-actions">
+          <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJy2HH6ZtFRDcR0fbxouD1YH0" target="_blank" rel="noopener">Write a review</a>
+          <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=26.5778319,93.2703068&destination_place_id=ChIJy2HH6ZtFRDcR0fbxouD1YH0" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M20 36 C20 24 18 14 12 6" stroke="#D9BC77" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 36 C20 22 22 12 29 5" stroke="#D9BC77" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 36 C20 26 20 16 20 9" stroke="#C29A45" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span><span class="name">Grasslands</span><span class="sub">Resort · Kaziranga</span></span>
+        </a>
+        <p class="small">A peaceful retreat beside Kaziranga National Park — a UNESCO World Heritage Site and home of the one-horned rhinoceros.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#rooms">Rooms &amp; suites</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>NH-37, Kaziranga, Assam</li>
+          <li><a href="tel:+918170011344">+91 81700 11344</a></li>
+          <li><a href="mailto:grasslandresortskaziranga@gmail.com">grasslandresortskaziranga@gmail.com</a></li>
+          <li><a href="https://search.google.com/local/writereview?placeid=ChIJy2HH6ZtFRDcR0fbxouD1YH0" target="_blank" rel="noopener">Review us on Google</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Grasslands Resort · A unit of Greenlane Hotels &amp; Resorts Pvt Ltd</span>
+      <span>Kaziranga National Park · Assam · India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav solid state
+const header=document.getElementById('header');
+const onScroll=()=>header.classList.toggle('solid',window.scrollY>40);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// mobile menu
+const toggle=document.getElementById('menuToggle');
+const links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>{
+  const open=links.classList.toggle('open');
+  toggle.classList.toggle('open',open);
+  toggle.setAttribute('aria-expanded',open);
+});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  links.classList.remove('open');toggle.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+}));
+
+// scroll reveals
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// enquiry form → opens email app addressed to the resort
+document.getElementById('enquiryForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const lines=[
+    'Name: '+v('name'),
+    'Phone: '+v('phone'),
+    'Check-in: '+v('in'),
+    'Check-out: '+v('out'),
+    'Interested in: '+v('type'),
+    'Guests: '+v('guests'),
+    '',
+    'Message:',
+    v('msg')
+  ].join('\n');
+  const subject='Website enquiry — '+v('type')+' ('+v('name')+')';
+  window.location.href='mailto:grasslandresortskaziranga@gmail.com'
+    +'?subject='+encodeURIComponent(subject)
+    +'&body='+encodeURIComponent(lines);
+});
+</script>
+</body>
+</html>
