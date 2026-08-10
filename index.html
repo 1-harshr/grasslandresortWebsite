@@ -70,7 +70,9 @@ a{color:inherit;text-decoration:none}
 .eyebrow{
   font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;
   font-weight:600;color:var(--grass);display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;overflow-wrap:anywhere;
 }
+.eyebrow::before,.hero .eyebrow::after{flex:none}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
 section{padding:110px 0}
 .section-head{max-width:640px;margin-bottom:64px}
@@ -358,8 +360,10 @@ footer .logo .name{color:var(--paper)}
 footer p.small{margin-top:16px;font-size:14px;max-width:38ch}
 footer h4{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px}
 footer ul{list-style:none}
-footer ul li{margin-bottom:10px;font-size:14px}
+footer ul li{margin-bottom:10px;font-size:14px;overflow-wrap:break-word}
+footer ul a{overflow-wrap:break-word;word-break:break-word}
 footer ul a:hover{color:var(--gold-soft)}
+.contact-info a{overflow-wrap:break-word;word-break:break-word}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(246,246,236,.45)}
 
 /* ---------- PHOTO COMPONENTS ---------- */
@@ -416,6 +420,7 @@ footer ul a:hover{color:var(--gold-soft)}
   .leisure-grid{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
   .map-row{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:34px}
 }
 @media (max-width:720px){
   nav.links{
@@ -433,6 +438,9 @@ footer ul a:hover{color:var(--gold-soft)}
   .amenity-grid{grid-template-columns:1fr}
   details.more ul{columns:1}
   .hero-inner{padding-bottom:190px}
+  .foot-grid{grid-template-columns:1fr;gap:30px;padding-bottom:36px}
+  .gallery{grid-template-columns:1fr;grid-auto-rows:210px}
+  .g-item.wide,.g-item.tall{grid-column:auto;grid-row:auto}
 }
 </style>
 
