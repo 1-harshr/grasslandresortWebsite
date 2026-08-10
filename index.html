@@ -358,8 +358,27 @@ footer ul a:hover{color:var(--gold-soft)}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(246,246,236,.45)}
 
 /* ---------- PHOTO COMPONENTS ---------- */
-.room-visual img.main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.room-visual:hover img.main{transform:scale(1.06)}
+/* room image carousel */
+.carousel{position:absolute;inset:0;overflow:hidden}
+.carousel .slides{display:flex;height:100%;transition:transform .55s cubic-bezier(.4,.1,.2,1)}
+.carousel .slides img{flex:none;width:100%;height:100%;object-fit:cover}
+.cbtn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  border:1px solid rgba(246,246,236,.5);background:rgba(20,41,31,.42);color:var(--paper);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  transition:background .25s,border-color .25s,color .25s,opacity .25s;
+}
+.cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--pine)}
+.cbtn.prev{left:16px}.cbtn.next{right:16px}
+.dots{position:absolute;left:0;right:0;bottom:16px;z-index:3;display:flex;justify-content:center;gap:8px}
+.dots button{
+  width:8px;height:8px;padding:0;border:none;border-radius:50%;cursor:pointer;
+  background:rgba(246,246,236,.55);transition:background .25s,width .25s;
+}
+.dots button.active{background:var(--gold-soft);width:22px;border-radius:5px}
+.carousel[data-single] .cbtn,.carousel[data-single] .dots{display:none}
 .about-photo{border-radius:var(--radius);overflow:hidden;margin-bottom:26px;border:1px solid var(--line)}
 .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
 .about-photo.wide{margin:34px 0 0}
@@ -687,7 +706,15 @@ footer ul a:hover{color:var(--gold-soft)}
     <article class="room-card reveal">
       <div class="room-visual">
         <span class="room-tag">Garden view</span>
-        <img class="main" src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
+        <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Executive Room photos">
+          <div class="slides">
+            <img src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
+            <img src="images/room-twin.jpg" alt="Twin-bedded Executive Room" loading="lazy">
+          </div>
+          <button class="cbtn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="cbtn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="dots" aria-hidden="true"></div>
+        </div>
       </div>
       <div class="room-body">
         <h3>Executive Rooms</h3>
@@ -721,7 +748,15 @@ footer ul a:hover{color:var(--gold-soft)}
     <article class="room-card flip reveal">
       <div class="room-visual">
         <span class="room-tag">Bedroom + living room</span>
-        <img class="main" src="images/suite-bed.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
+        <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Presidential Suite photos">
+          <div class="slides">
+            <img src="images/suite-bed.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
+            <img src="images/suite-living.jpg" alt="Presidential Suite living room with sofas" loading="lazy">
+          </div>
+          <button class="cbtn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="cbtn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="dots" aria-hidden="true"></div>
+        </div>
       </div>
       <div class="room-body">
         <h3>Presidential Suite</h3>
@@ -1068,6 +1103,47 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   links.classList.remove('open');toggle.classList.remove('open');
   toggle.setAttribute('aria-expanded','false');
 }));
+
+// room image carousels
+document.querySelectorAll('[data-carousel]').forEach(car=>{
+  const track=car.querySelector('.slides');
+  const imgs=[...track.children];
+  const dotsWrap=car.querySelector('.dots');
+  if(imgs.length<2){car.setAttribute('data-single','');return;}
+  let i=0;
+  imgs.forEach((_,idx)=>{
+    const b=document.createElement('button');b.type='button';
+    b.setAttribute('aria-label','Show photo '+(idx+1));
+    if(idx===0)b.classList.add('active');
+    b.addEventListener('click',()=>go(idx));
+    dotsWrap.appendChild(b);
+  });
+  const dots=[...dotsWrap.children];
+  const go=n=>{
+    i=(n+imgs.length)%imgs.length;
+    track.style.transform='translateX('+(-i*100)+'%)';
+    dots.forEach((d,x)=>d.classList.toggle('active',x===i));
+  };
+  car.querySelector('.prev').addEventListener('click',()=>{go(i-1);restart();});
+  car.querySelector('.next').addEventListener('click',()=>{go(i+1);restart();});
+  // touch swipe
+  let sx=null;
+  track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',e=>{
+    if(sx===null)return;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>40){go(dx<0?i+1:i-1);restart();}
+    sx=null;
+  });
+  // gentle autoplay (paused on hover; off for reduced motion)
+  let timer=null;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const start=()=>{if(!reduce)timer=setInterval(()=>go(i+1),6000);};
+  const restart=()=>{clearInterval(timer);start();};
+  car.addEventListener('mouseenter',()=>clearInterval(timer));
+  car.addEventListener('mouseleave',start);
+  start();
+});
 
 // scroll reveals
 const io=new IntersectionObserver(entries=>{
