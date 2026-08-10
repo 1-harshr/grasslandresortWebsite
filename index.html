@@ -83,7 +83,7 @@ section{padding:110px 0}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
-  .sway,.sway-2,.sway-3,.mist-drift,.bird{animation:none !important}
+  .sway,.sway-2,.sway-3,.mist-drift,.bird,.scroll-fab{animation:none !important}
 }
 
 /* ---------- NAV ---------- */
@@ -166,30 +166,21 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 @keyframes sway{from{transform:rotate(-.6deg)}to{transform:rotate(.6deg)}}
 .bird{animation:fly 34s linear infinite}
 @keyframes fly{from{transform:translateX(-8vw)}to{transform:translateX(108vw)}}
-.scroll-cue{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;
-  color:rgba(246,246,236,.85);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  animation:cueBob 2.2s ease-in-out infinite;
+.scroll-fab{
+  position:fixed;left:50%;bottom:30px;transform:translateX(-50%);z-index:50;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 22px;border-radius:999px;
+  font-family:inherit;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--paper);background:rgba(20,41,31,.5);border:1px solid rgba(246,246,236,.45);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 12px 28px -10px rgba(10,20,15,.55);cursor:pointer;white-space:nowrap;
+  transition:opacity .4s ease,transform .4s ease,background .25s ease,border-color .25s ease,color .25s ease;
+  animation:scrollBob 2.4s ease-in-out infinite;
 }
-.scroll-cue::after{
-  content:"";width:1px;height:34px;overflow:hidden;
-  background:linear-gradient(rgba(246,246,236,.85),rgba(246,246,236,.05));
-  -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000);
-  position:relative;
-}
-.scroll-cue::before{
-  content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:1px;height:12px;z-index:1;
-  background:linear-gradient(rgba(246,246,236,0),rgba(246,246,236,.95));
-  animation:cueTrail 2.2s ease-in-out infinite;
-}
-@keyframes cueBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-@keyframes cueTrail{0%{transform:translateX(-50%) translateY(-30px);opacity:0}
-  30%{opacity:1}70%{opacity:1}100%{transform:translateX(-50%) translateY(4px);opacity:0}}
-@media (prefers-reduced-motion:reduce){
-  .scroll-cue{animation:none}.scroll-cue::before{animation:none;display:none}
-}
+.scroll-fab svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.scroll-fab:hover{background:var(--gold);border-color:var(--gold);color:var(--pine);animation-play-state:paused}
+.scroll-fab.hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(16px)}
+@keyframes scrollBob{0%,100%{translate:0 0}50%{translate:0 6px}}
 
 /* ---------- STAT BAND ---------- */
 .stats{background:var(--pine);color:var(--paper);padding:0}
@@ -632,7 +623,10 @@ footer ul a:hover{color:var(--gold-soft)}
       <rect x="0" y="316" width="1440" height="24" fill="#14291F"/>
     </svg>
   </div>
-  <p class="scroll-cue">Scroll</p>
+  <button class="scroll-fab" id="scrollFab" type="button" aria-label="Get in touch — scroll to contact">
+    <span>Get in touch</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
 </section>
 
 <!-- ============ STATS ============ -->
@@ -1052,10 +1046,20 @@ footer ul a:hover{color:var(--gold-soft)}
 </a>
 
 <script>
-// nav solid state
+// nav solid state + scroll-down FAB (visible only near the top)
 const header=document.getElementById('header');
-const onScroll=()=>header.classList.toggle('solid',window.scrollY>40);
+const scrollFab=document.getElementById('scrollFab');
+const onScroll=()=>{
+  const scrolled=window.scrollY>40;
+  header.classList.toggle('solid',scrolled);
+  scrollFab.classList.toggle('hidden',scrolled);
+};
 onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// click → smooth-scroll to the bottom of the page (contact + footer)
+scrollFab.addEventListener('click',()=>{
+  window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'});
+});
 
 // mobile menu
 const toggle=document.getElementById('menuToggle');
