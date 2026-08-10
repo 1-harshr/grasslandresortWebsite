@@ -222,7 +222,7 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
   margin-bottom:48px;
 }
 .room-card.flip .room-visual{order:2}
-.room-visual{position:relative;min-height:420px;background:var(--pine)}
+.room-visual{position:relative;min-height:420px;background:var(--pine);overflow:hidden}
 .room-visual svg{position:absolute;inset:0;width:100%;height:100%}
 .room-tag{
   position:absolute;top:26px;left:26px;z-index:2;
@@ -358,11 +358,8 @@ footer ul a:hover{color:var(--gold-soft)}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12.5px;color:rgba(246,246,236,.45)}
 
 /* ---------- PHOTO COMPONENTS ---------- */
-.room-visual img.main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.room-visual .thumb{
-  position:absolute;right:22px;bottom:22px;z-index:2;width:34%;max-width:190px;
-  border-radius:10px;border:3px solid var(--paper);box-shadow:0 14px 30px -12px rgba(20,41,31,.5);
-}
+.room-visual img.main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.room-visual:hover img.main{transform:scale(1.06)}
 .about-photo{border-radius:var(--radius);overflow:hidden;margin-bottom:26px;border:1px solid var(--line)}
 .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
 .about-photo.wide{margin:34px 0 0}
@@ -691,7 +688,6 @@ footer ul a:hover{color:var(--gold-soft)}
       <div class="room-visual">
         <span class="room-tag">Garden view</span>
         <img class="main" src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
-        <img class="thumb" src="images/room-twin.jpg" alt="Twin-bedded Executive Room" loading="lazy">
       </div>
       <div class="room-body">
         <h3>Executive Rooms</h3>
@@ -726,7 +722,6 @@ footer ul a:hover{color:var(--gold-soft)}
       <div class="room-visual">
         <span class="room-tag">Bedroom + living room</span>
         <img class="main" src="images/suite-bed.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
-        <img class="thumb" src="images/suite-living.jpg" alt="Presidential Suite living room with sofas" loading="lazy">
       </div>
       <div class="room-body">
         <h3>Presidential Suite</h3>
