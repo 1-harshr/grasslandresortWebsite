@@ -363,12 +363,20 @@ footer ul a:hover{color:var(--gold-soft)}
 .critters .walk{animation:critterWalk 34s linear infinite}
 .critters .graze{animation:critterBob 4.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .critters .hop{animation:critterHop 3.2s ease-in-out infinite}
-.critters .flit{animation:critterFlit 11s ease-in-out infinite}
+.critters .flit{animation:critterFlit 14s ease-in-out infinite}
 .critters .fly2{animation:critterFly 27s linear infinite}
 @keyframes critterWalk{from{transform:translateX(-190px)}to{transform:translateX(1580px)}}
 @keyframes critterBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @keyframes critterHop{0%,55%,100%{transform:translateY(0)}28%{transform:translateY(-10px)}}
-@keyframes critterFlit{0%{transform:translate(0,0)}25%{transform:translate(130px,-18px)}50%{transform:translate(260px,6px)}75%{transform:translate(390px,-14px)}100%{transform:translate(520px,0)}}
+@keyframes critterFlit{
+  0%{transform:translate(0,0)}
+  18%{transform:translate(90px,-22px)}
+  36%{transform:translate(180px,2px)}
+  52%{transform:translate(120px,-16px)}
+  70%{transform:translate(30px,12px)}
+  85%{transform:translate(-24px,-6px)}
+  100%{transform:translate(0,0)}
+}
 @keyframes critterFly{from{transform:translate(-180px,0)}to{transform:translate(1600px,-14px)}}
 
 /* ---------- PHOTO COMPONENTS ---------- */
