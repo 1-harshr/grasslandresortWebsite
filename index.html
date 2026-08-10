@@ -3,8 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grasslands Resort — Kaziranga | Where Wilderness Meets Warm Hospitality</title>
-<meta name="description" content="Grasslands Resort on NH-37, beside Kaziranga National Park. 21 Executive Rooms, a Presidential Suite, multi-cuisine dining, pool, conference hall and an open lawn for 1000 guests.">
+<title>Grasslands Resort Kaziranga — Hotel & Resort beside Kaziranga National Park, Assam</title>
+<meta name="description" content="Grasslands Resort on NH-37, beside Kaziranga National Park, Assam. 21 Executive Rooms, a Presidential Suite, multi-cuisine dining, swimming pool, conference hall and an open lawn for up to 1000 guests. Book your Kaziranga wildlife stay.">
+<meta name="keywords" content="Grasslands Resort, Kaziranga resort, hotel near Kaziranga National Park, Kaziranga hotels, resort in Assam, Kaziranga wedding venue, Kaziranga safari stay, NH-37 Kaziranga">
+<meta name="author" content="Grasslands Resort, Kaziranga">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://grasslandresort.com/">
+<meta name="theme-color" content="#14291F">
+
+<!-- Geo targeting -->
+<meta name="geo.region" content="IN-AS">
+<meta name="geo.placename" content="Kaziranga, Assam, India">
+<meta name="geo.position" content="26.5778319;93.2703068">
+<meta name="ICBM" content="26.5778319, 93.2703068">
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business">
+<meta property="og:site_name" content="Grasslands Resort Kaziranga">
+<meta property="og:title" content="Grasslands Resort Kaziranga — Hotel & Resort beside Kaziranga National Park">
+<meta property="og:description" content="A peaceful retreat on NH-37 beside Kaziranga National Park, Assam — Executive Rooms, a Presidential Suite, multi-cuisine dining, pool, and event lawns for up to 1000 guests.">
+<meta property="og:url" content="https://grasslandresort.com/">
+<meta property="og:image" content="https://grasslandresort.com/images/hero.jpg">
+<meta property="og:image:alt" content="Cottages of Grasslands Resort under emerald roofs, surrounded by gardens">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Grasslands Resort Kaziranga — Hotel & Resort beside Kaziranga National Park">
+<meta name="twitter:description" content="A peaceful retreat on NH-37 beside Kaziranga National Park, Assam — rooms, a suite, dining, pool, and event lawns for up to 1000 guests.">
+<meta name="twitter:image" content="https://grasslandresort.com/images/hero.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -24,7 +52,7 @@
   --wrap:1180px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{
   font-family:'Figtree',system-ui,sans-serif;
   background:var(--mist);
@@ -59,13 +87,23 @@ section{padding:110px 0}
 /* ---------- NAV ---------- */
 header{
   position:fixed;inset:0 0 auto 0;z-index:60;
-  transition:background .35s ease, box-shadow .35s ease;
+  transition:background .35s ease, box-shadow .35s ease, border-color .35s ease;
+  border-bottom:1px solid transparent;
 }
 header .bar{
   max-width:var(--wrap);margin:0 auto;padding:20px 28px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
-header.solid{background:rgba(20,41,31,.96);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line-dark)}
+header.solid{
+  background:rgba(20,41,31,.78);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border-bottom-color:rgba(246,246,236,.12);
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  header.solid{background:rgba(20,41,31,.96)}
+}
 .logo{display:flex;align-items:center;gap:12px;color:var(--paper)}
 .logo svg{width:34px;height:34px}
 .logo .name{font-family:'Marcellus',serif;font-size:21px;letter-spacing:.04em}
@@ -130,8 +168,26 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
   position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;
   color:rgba(246,246,236,.85);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
   display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:cueBob 2.2s ease-in-out infinite;
 }
-.scroll-cue::after{content:"";width:1px;height:34px;background:linear-gradient(rgba(246,246,236,.8),transparent)}
+.scroll-cue::after{
+  content:"";width:1px;height:34px;overflow:hidden;
+  background:linear-gradient(rgba(246,246,236,.85),rgba(246,246,236,.05));
+  -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000);
+  position:relative;
+}
+.scroll-cue::before{
+  content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:1px;height:12px;z-index:1;
+  background:linear-gradient(rgba(246,246,236,0),rgba(246,246,236,.95));
+  animation:cueTrail 2.2s ease-in-out infinite;
+}
+@keyframes cueBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes cueTrail{0%{transform:translateX(-50%) translateY(-30px);opacity:0}
+  30%{opacity:1}70%{opacity:1}100%{transform:translateX(-50%) translateY(4px);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .scroll-cue{animation:none}.scroll-cue::before{animation:none;display:none}
+}
 
 /* ---------- STAT BAND ---------- */
 .stats{background:var(--pine);color:var(--paper);padding:0}
@@ -379,6 +435,68 @@ footer ul a:hover{color:var(--gold-soft)}
   .hero-inner{padding-bottom:190px}
 }
 </style>
+
+<!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Resort",
+  "@id": "https://grasslandresort.com/#resort",
+  "name": "Grasslands Resort",
+  "description": "A peaceful retreat on NH-37 beside Kaziranga National Park, Assam — 21 Executive Rooms, a Presidential Suite, multi-cuisine dining, a swimming pool, conference hall and an open lawn for up to 1000 guests.",
+  "url": "https://grasslandresort.com/",
+  "image": "https://grasslandresort.com/images/hero.jpg",
+  "telephone": "+91-81700-11344",
+  "email": "grasslandresortskaziranga@gmail.com",
+  "priceRange": "$$",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "Greenlane Hotels & Resorts Pvt Ltd"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "National Highway 37, beside Kaziranga National Park",
+    "addressLocality": "Kaziranga",
+    "addressRegion": "Assam",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 26.5778319,
+    "longitude": 93.2703068
+  },
+  "hasMap": "https://www.google.com/maps/dir/?api=1&destination=26.5778319,93.2703068",
+  "checkinTime": "12:00",
+  "checkoutTime": "11:00",
+  "petsAllowed": false,
+  "numberOfRooms": 22,
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Swimming pool", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Multi-cuisine restaurant", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Conference hall", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Banquet hall", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Open lawn for events", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Free parking", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Airport / railway transfers", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Room service", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Laundry service", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Kids' play area", "value": true }
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "HotelRoom", "name": "Executive Room", "description": "Garden-facing Executive Room with king-size bed, sitting area and work desk." } },
+    { "@type": "Offer", "itemOffered": { "@type": "HotelRoom", "name": "Presidential Suite", "description": "Suite with separate bedroom and living room and a Jacuzzi bathtub." } }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.0",
+    "reviewCount": "490",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>
 </head>
 <body>
 
