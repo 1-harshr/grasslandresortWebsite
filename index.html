@@ -584,8 +584,33 @@ footer ul a:hover{color:var(--gold-soft)}
 .lb-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--pine)}
 .lb-prev{left:18px}.lb-next{right:18px}
 
+/* ---------- TESTIMONIALS ---------- */
+.testimonials{background:var(--panel);color:var(--paper)}
+.testimonials .eyebrow{color:var(--gold-soft)}
+.testimonials .section-head h2{color:var(--paper)}
+.testimonials .section-head p{color:rgba(246,246,236,.72)}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tst{border:1px solid var(--line-dark);border-radius:var(--radius);padding:32px 30px;background:rgba(246,246,236,.03);display:flex;flex-direction:column;gap:15px}
+.tst-stars{color:var(--gold);letter-spacing:4px;font-size:15px}
+.tst blockquote{font-family:'Marcellus',serif;font-size:18px;line-height:1.5;color:var(--paper)}
+.tst figcaption{margin-top:auto;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,246,236,.6)}
+.tst-cta{margin-top:36px;text-align:center}
+.testimonials .tst-cta .btn{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.testimonials .tst-cta .btn:hover{background:transparent;color:var(--gold-soft)}
+
+/* ---------- HOW TO REACH ---------- */
+.reach{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:60px}
+.reach-step{position:relative;padding:0 16px;text-align:center}
+.reach-step .reach-ico{position:relative;z-index:1;width:52px;height:52px;margin:0 auto 16px;border-radius:50%;background:var(--panel);display:grid;place-items:center}
+.reach-step .reach-ico svg{width:24px;height:24px;stroke:var(--gold-soft);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.reach-step:not(:last-child)::after{content:"";position:absolute;top:26px;left:calc(50% + 34px);width:calc(100% - 68px);height:1px;background:var(--line)}
+.reach-step h4{font-family:'Marcellus',serif;font-size:16px;color:var(--heading);margin-bottom:6px}
+.reach-step p{font-size:13px;color:rgba(var(--ink-rgb),.7);line-height:1.5}
+
 /* ---------- ACTIVE NAV (scroll spy) ---------- */
 nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
+@media(max-width:980px){.tst-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.reach{grid-template-columns:1fr 1fr;gap:30px 0}.reach-step::after{display:none}}
 
 /* ---------- EXPLORE/FAQ RESPONSIVE ---------- */
 @media(max-width:980px){.explore-grid{grid-template-columns:1fr 1fr}}
@@ -782,12 +807,12 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
           <p>From banquet dinners to boardroom meetings and open-air weddings, our team ensures every stay — and every occasion — is comfortable, memorable, and truly close to nature.</p>
         </div>
         <div class="about-photo wide">
-          <img src="images/about-cottage.jpg" alt="Garden-facing cottages with emerald roofs at Grasslands Resort" loading="lazy">
+          <img width="1400" height="1050" decoding="async" src="images/about-cottage.jpg" alt="Garden-facing cottages with emerald roofs at Grasslands Resort" loading="lazy">
         </div>
       </div>
       <aside class="reveal">
         <div class="about-photo">
-          <img src="images/about-gazebo.jpg" alt="Gazebo and lawns in the resort gardens" loading="lazy">
+          <img width="1400" height="1050" decoding="async" src="images/about-gazebo.jpg" alt="Gazebo and lawns in the resort gardens" loading="lazy">
         </div>
         <div class="getting-card" style="position:static">
         <h3>Getting here</h3>
@@ -819,8 +844,8 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
         <span class="room-tag">King &amp; twin</span>
         <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Executive Room photos">
           <div class="slides">
-            <img src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
-            <img src="images/room-twin.jpg" alt="Twin-bedded Executive Room" loading="lazy">
+            <img width="640" height="427" decoding="async" src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
+            <img width="675" height="450" decoding="async" src="images/room-twin.jpg" alt="Twin-bedded Executive Room" loading="lazy">
           </div>
           <button class="cbtn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
           <button class="cbtn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -861,8 +886,8 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
         <span class="room-tag">Bedroom + living room</span>
         <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Presidential Suite photos">
           <div class="slides">
-            <img src="images/suite-living.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
-            <img src="images/suite-bed.jpg" alt="Presidential Suite living room with sofas and lounge seating" loading="lazy">
+            <img width="640" height="427" decoding="async" src="images/suite-living.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
+            <img width="640" height="427" decoding="async" src="images/suite-bed.jpg" alt="Presidential Suite living room with sofas and lounge seating" loading="lazy">
           </div>
           <button class="cbtn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
           <button class="cbtn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -908,21 +933,21 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
     </div>
     <div class="leisure-grid">
       <div class="leisure-card reveal">
-        <img src="images/dining.jpg" alt="Multi-cuisine restaurant with starlit ceiling and draped windows" loading="lazy">
+        <img width="675" height="450" decoding="async" src="images/dining.jpg" alt="Multi-cuisine restaurant with starlit ceiling and draped windows" loading="lazy">
         <div class="txt">
           <h3>Multi-cuisine restaurant</h3>
           <p>Local Assamese flavours, Indian classics and international favourites — served under a starlit ceiling.</p>
         </div>
       </div>
       <div class="leisure-card reveal">
-        <img src="images/pool.jpg" alt="Swimming pool with the Grassland emblem tiled on its floor" loading="lazy">
+        <img width="1280" height="960" decoding="async" src="images/pool.jpg" alt="Swimming pool with the Grassland emblem tiled on its floor" loading="lazy">
         <div class="txt">
           <h3>Swimming pool</h3>
           <p>Cool off between safaris in our garden-side pool — the Grasslands emblem tiled beneath the water.</p>
         </div>
       </div>
       <div class="leisure-card reveal">
-        <img src="images/lobby.jpg" alt="Spacious resort lobby with lounge seating" loading="lazy">
+        <img width="675" height="450" decoding="async" src="images/lobby.jpg" alt="Spacious resort lobby with lounge seating" loading="lazy">
         <div class="txt">
           <h3>Lounge &amp; gardens</h3>
           <p>A generous lobby to gather in, landscaped gardens for evening strolls, and a play area for the little ones.</p>
@@ -986,7 +1011,7 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
       <div class="event-card reveal">
         <h3>Open Lawn</h3>
         <p>Celebrate under the open sky on our beautifully maintained lawn — ample space, scenic beauty and an unforgettable ambience.</p>
-        <div class="event-img"><img src="images/lawn.jpg" alt="The expansive open lawn framed by palms at Grasslands Resort" loading="lazy"></div>
+        <div class="event-img"><img width="1600" height="1200" decoding="async" src="images/lawn.jpg" alt="The expansive open lawn framed by palms at Grasslands Resort" loading="lazy"></div>
         <div class="lawn-num"><strong>1000</strong><span>guests under the open sky</span></div>
         <div class="occasions">
           <span>Weddings</span><span>Receptions</span><span>Family gatherings</span>
@@ -1077,14 +1102,45 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
       <h2>Around the resort</h2>
     </div>
     <div class="gallery reveal">
-      <div class="g-item wide"><img src="images/g-garden.jpg" alt="Cottage gardens with yellow allamanda blooms" loading="lazy"><span class="cap">Cottage gardens</span></div>
-      <div class="g-item tall"><img src="images/g-palms.jpg" alt="Stepping-stone path beneath tall palms" loading="lazy"><span class="cap">Palm walk</span></div>
-      <div class="g-item"><img src="images/g-veranda.jpg" alt="Arched veranda with cane chairs" loading="lazy"><span class="cap">Arched veranda</span></div>
-      <div class="g-item"><img src="images/g-cottage-front.jpg" alt="Garden-facing cottage with white picket fencing" loading="lazy"><span class="cap">Garden cottage</span></div>
-      <div class="g-item"><img src="images/g-path.jpg" alt="Curving stepping-stone path through the lawns" loading="lazy"><span class="cap">Garden paths</span></div>
-      <div class="g-item"><img src="images/g-pool-wide.jpg" alt="Poolside deck beside the green-roofed pavilion" loading="lazy"><span class="cap">Poolside</span></div>
-      <div class="g-item wide"><img src="images/g-entrance.jpg" alt="Resort entrance with a one-horned rhino sculpture on the lawn" loading="lazy"><span class="cap">The entrance</span></div>
-      <div class="g-item"><img src="images/g-cottages.jpg" alt="Row of emerald-roofed cottages with rose beds" loading="lazy"><span class="cap">Emerald roofs</span></div>
+      <div class="g-item wide"><img width="1400" height="1050" decoding="async" src="images/g-garden.jpg" alt="Cottage gardens with yellow allamanda blooms" loading="lazy"><span class="cap">Cottage gardens</span></div>
+      <div class="g-item tall"><img width="1200" height="1600" decoding="async" src="images/g-palms.jpg" alt="Stepping-stone path beneath tall palms" loading="lazy"><span class="cap">Palm walk</span></div>
+      <div class="g-item"><img width="1400" height="1050" decoding="async" src="images/g-veranda.jpg" alt="Arched veranda with cane chairs" loading="lazy"><span class="cap">Arched veranda</span></div>
+      <div class="g-item"><img width="675" height="450" decoding="async" src="images/g-cottage-front.jpg" alt="Garden-facing cottage with white picket fencing" loading="lazy"><span class="cap">Garden cottage</span></div>
+      <div class="g-item"><img width="1400" height="1050" decoding="async" src="images/g-path.jpg" alt="Curving stepping-stone path through the lawns" loading="lazy"><span class="cap">Garden paths</span></div>
+      <div class="g-item"><img width="1400" height="1050" decoding="async" src="images/g-pool-wide.jpg" alt="Poolside deck beside the green-roofed pavilion" loading="lazy"><span class="cap">Poolside</span></div>
+      <div class="g-item wide"><img width="1400" height="1050" decoding="async" src="images/g-entrance.jpg" alt="Resort entrance with a one-horned rhino sculpture on the lawn" loading="lazy"><span class="cap">The entrance</span></div>
+      <div class="g-item"><img width="675" height="450" decoding="async" src="images/g-cottages.jpg" alt="Row of emerald-roofed cottages with rose beds" loading="lazy"><span class="cap">Emerald roofs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Guest stories</p>
+      <h2>Loved by our guests</h2>
+      <p>Rated 4.0 across 490+ reviews on Google — here's what visitors remember most about their stay.</p>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst reveal">
+        <div class="tst-stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote>"Beautifully located amidst nature, right beside Kaziranga. The staff's warmth made us feel like family."</blockquote>
+        <figcaption>via Google</figcaption>
+      </figure>
+      <figure class="tst reveal">
+        <div class="tst-stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote>"Spacious, spotless rooms and a lovely garden pool. Dinner at the multi-cuisine restaurant was the perfect end to our safari day."</blockquote>
+        <figcaption>via Google</figcaption>
+      </figure>
+      <figure class="tst reveal">
+        <div class="tst-stars" aria-label="4 out of 5">★★★★☆</div>
+        <blockquote>"We hosted a family function on the open lawn — the team arranged everything beautifully. A wonderful base for exploring the park."</blockquote>
+        <figcaption>via Google</figcaption>
+      </figure>
+    </div>
+    <div class="tst-cta reveal">
+      <a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJy2HH6ZtFRDcR0fbxouD1YH0" target="_blank" rel="noopener">Write a review</a>
     </div>
   </div>
 </section>
@@ -1132,6 +1188,31 @@ nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
       <p class="eyebrow">Contact us</p>
       <h2>Plan your Kaziranga escape</h2>
     </div>
+
+    <!-- how to reach -->
+    <div class="reach reveal" aria-label="How to reach the resort">
+      <div class="reach-step">
+        <span class="reach-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
+        <h4>Fly in</h4>
+        <p>Guwahati (LGB) ~220&nbsp;km · Jorhat (JRH) ~90&nbsp;km</p>
+      </div>
+      <div class="reach-step">
+        <span class="reach-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="13" rx="2"/><path d="M6 11h12M9 20l-2 2M15 20l2 2M9.5 16h5"/></svg></span>
+        <h4>Or by rail</h4>
+        <p>Guwahati &amp; Jorhat railheads, then road</p>
+      </div>
+      <div class="reach-step">
+        <span class="reach-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l1.6-4.5A2 2 0 018.5 7h7a2 2 0 011.9 1.5L19 13M4 13h16v4H4zM7.5 17v2M16.5 17v2"/></svg></span>
+        <h4>Drive NH-37</h4>
+        <p>A scenic run along National Highway 37</p>
+      </div>
+      <div class="reach-step">
+        <span class="reach-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 10-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <h4>Arrive</h4>
+        <p>Grasslands Resort, beside Kaziranga National Park</p>
+      </div>
+    </div>
+
     <div class="contact-grid">
       <div class="contact-info reveal">
         <h3>Address</h3>
