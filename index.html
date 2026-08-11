@@ -134,14 +134,14 @@ header.solid{
 .logo svg{width:34px;height:34px}
 .logo .name{font-family:'Marcellus',serif;font-size:21px;letter-spacing:.04em}
 .logo .sub{display:block;font-family:'Figtree',sans-serif;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft);margin-top:1px}
-nav.links{display:flex;gap:34px;align-items:center}
+nav.links{display:flex;gap:26px;align-items:center}
 nav.links a{
   color:rgba(246,246,236,.85);font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;
   padding:4px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
 }
 nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 .btn{
-  display:inline-flex;align-items:center;gap:10px;
+  display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
   padding:13px 26px;border-radius:999px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
   border:1px solid var(--gold);color:var(--pine);background:var(--gold);
   transition:background .25s,color .25s,transform .25s;cursor:pointer;
@@ -508,7 +508,8 @@ footer ul a:hover{color:var(--gold-soft)}
   .map-row{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:34px}
 }
-@media (max-width:720px){
+/* nav collapses to a hamburger menu on tablet & below */
+@media (max-width:1024px){
   nav.links{
     position:fixed;top:0;left:0;right:0;height:100vh;height:100dvh;
     background:var(--panel);flex-direction:column;justify-content:center;
@@ -522,6 +523,9 @@ footer ul a:hover{color:var(--gold-soft)}
   .menu-toggle.open span:nth-child(2){opacity:0}
   .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   header .bar .btn{display:none}
+  header .bar .theme-toggle{margin-left:auto;margin-right:2px}
+}
+@media (max-width:720px){
   .fac-grid,.form-row{grid-template-columns:1fr}
   .amenity-grid{grid-template-columns:1fr}
   details.more ul{columns:1}
@@ -547,6 +551,45 @@ footer ul a:hover{color:var(--gold-soft)}
 /* dark-mode: the solid dark button reads as gold on dark surfaces */
 [data-theme="dark"] .btn.dark{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
 [data-theme="dark"] .btn.dark:hover{background:transparent;color:var(--gold)}
+
+/* ---------- EXPLORE KAZIRANGA ---------- */
+.explore{background:var(--mist)}
+.explore-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.x-card{border:1px solid var(--line);border-radius:var(--radius);padding:34px 28px;background:var(--surface);transition:transform .35s ease,box-shadow .35s ease}
+.x-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,41,31,.35)}
+.x-card .ico{width:50px;height:50px;border-radius:50%;background:var(--panel);display:grid;place-items:center;margin-bottom:20px}
+.x-card .ico svg{width:24px;height:24px;stroke:var(--gold-soft);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.x-card h3{font-size:19px;color:var(--heading)}
+.x-card p{margin-top:12px;font-size:14px;color:rgba(var(--ink-rgb),.74);line-height:1.6}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--surface)}
+.faq-list{max-width:820px;margin:0 auto}
+.faq-list details{border:1px solid var(--line);border-radius:12px;background:var(--mist);margin-bottom:14px;padding:0 24px}
+.faq-list summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-family:'Marcellus',serif;font-size:18px;color:var(--heading)}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-size:22px;line-height:1;color:var(--gold);transition:transform .3s;flex:none}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list details p{padding:0 0 22px;margin:0;color:rgba(var(--ink-rgb),.75);font-size:15px;line-height:1.65;max-width:72ch}
+
+/* ---------- GALLERY LIGHTBOX ---------- */
+.gallery .g-item img{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(8,16,11,.93);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:6vh 4vw}
+.lightbox.open{display:flex}
+.lb-img{max-width:92vw;max-height:80vh;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);object-fit:contain}
+.lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:var(--paper);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase}
+.lb-close{position:absolute;top:18px;right:24px;width:44px;height:44px;background:none;border:none;color:var(--paper);font-size:32px;line-height:1;cursor:pointer;opacity:.85}
+.lb-close:hover{opacity:1;color:var(--gold-soft)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(246,246,236,.4);background:rgba(20,41,31,.42);color:var(--paper);font-size:26px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .25s,border-color .25s,color .25s}
+.lb-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--pine)}
+.lb-prev{left:18px}.lb-next{right:18px}
+
+/* ---------- ACTIVE NAV (scroll spy) ---------- */
+nav.links a.active{color:var(--gold-soft);border-color:var(--gold-soft)}
+
+/* ---------- EXPLORE/FAQ RESPONSIVE ---------- */
+@media(max-width:980px){.explore-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.explore-grid{grid-template-columns:1fr}.faq-list summary{font-size:16px}.lb-nav{width:44px;height:44px;font-size:22px}}
 </style>
 
 <!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
@@ -627,6 +670,7 @@ footer ul a:hover{color:var(--gold-soft)}
     <nav class="links" id="navLinks" aria-label="Main">
       <a href="#about">About</a>
       <a href="#rooms">Rooms</a>
+      <a href="#explore">Explore</a>
       <a href="#events">Events</a>
       <a href="#facilities">Facilities</a>
       <a href="#gallery">Gallery</a>
@@ -772,7 +816,7 @@ footer ul a:hover{color:var(--gold-soft)}
     <!-- Executive Room -->
     <article class="room-card reveal">
       <div class="room-visual">
-        <span class="room-tag">Garden view</span>
+        <span class="room-tag">King &amp; twin</span>
         <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Executive Room photos">
           <div class="slides">
             <img src="images/room-executive.jpg" alt="Executive Room with king-size bed, work desk and warm wooden furnishings" loading="lazy">
@@ -817,8 +861,8 @@ footer ul a:hover{color:var(--gold-soft)}
         <span class="room-tag">Bedroom + living room</span>
         <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Presidential Suite photos">
           <div class="slides">
-            <img src="images/suite-bed.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
-            <img src="images/suite-living.jpg" alt="Presidential Suite living room with sofas" loading="lazy">
+            <img src="images/suite-living.jpg" alt="Presidential Suite bedroom with tufted headboard and warm bedside lighting" loading="lazy">
+            <img src="images/suite-bed.jpg" alt="Presidential Suite living room with sofas and lounge seating" loading="lazy">
           </div>
           <button class="cbtn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
           <button class="cbtn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -884,6 +928,39 @@ footer ul a:hover{color:var(--gold-soft)}
           <p>A generous lobby to gather in, landscaped gardens for evening strolls, and a play area for the little ones.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE KAZIRANGA ============ -->
+<section class="explore" id="explore">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Explore Kaziranga</p>
+      <h2>The wild is right next door</h2>
+      <p>Wake beside a UNESCO World Heritage Site — home to two-thirds of the world's one-horned rhinos, along with tigers, wild elephants, swamp deer and hundreds of bird species.</p>
+    </div>
+    <div class="explore-grid">
+      <article class="x-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="4.2"/><circle cx="5.5" cy="9.5" r="1.7"/><circle cx="9.5" cy="6" r="1.7"/><circle cx="14.5" cy="6" r="1.7"/><circle cx="18.5" cy="9.5" r="1.7"/></svg></div>
+        <h3>The one-horned rhino</h3>
+        <p>Kaziranga shelters the planet's largest population of the great Indian one-horned rhinoceros — sightings are common on an early-morning safari.</p>
+      </article>
+      <article class="x-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2-5h11l3 5M3 13h18v4h-2M3 13v4h2"/><circle cx="8" cy="17.5" r="1.8"/><circle cx="16" cy="17.5" r="1.8"/></svg></div>
+        <h3>Jeep &amp; elephant safari</h3>
+        <p>Explore the park's ranges by jeep, or ride through the tall elephant grass at dawn on an elephant-back safari. We help arrange permits and timings.</p>
+      </article>
+      <article class="x-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12q6-8 12-3M15 9c2 0 4 1 6-1M8 12l-3 8M8 12c3 3 7 3 10 0"/></svg></div>
+        <h3>A birdwatcher's haven</h3>
+        <p>Pelicans, storks, eagles and great flocks of migratory birds gather across the wetlands — Kaziranga is a designated Important Bird Area.</p>
+      </article>
+      <article class="x-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Best time to visit</h3>
+        <p>The park is typically open November to April. The cool, dry winter months bring the clearest views and the most active wildlife.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1006,8 +1083,44 @@ footer ul a:hover{color:var(--gold-soft)}
       <div class="g-item"><img src="images/g-cottage-front.jpg" alt="Garden-facing cottage with white picket fencing" loading="lazy"><span class="cap">Garden cottage</span></div>
       <div class="g-item"><img src="images/g-path.jpg" alt="Curving stepping-stone path through the lawns" loading="lazy"><span class="cap">Garden paths</span></div>
       <div class="g-item"><img src="images/g-pool-wide.jpg" alt="Poolside deck beside the green-roofed pavilion" loading="lazy"><span class="cap">Poolside</span></div>
-      <div class="g-item wide"><img src="images/g-entrance.jpg" alt="Resort entrance with elephant sculpture on the lawn" loading="lazy"><span class="cap">The entrance</span></div>
+      <div class="g-item wide"><img src="images/g-entrance.jpg" alt="Resort entrance with a one-horned rhino sculpture on the lawn" loading="lazy"><span class="cap">The entrance</span></div>
       <div class="g-item"><img src="images/g-cottages.jpg" alt="Row of emerald-roofed cottages with rose beds" loading="lazy"><span class="cap">Emerald roofs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Good to know</p>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details>
+        <summary>What are the check-in and check-out times?</summary>
+        <p>Check-in is from 12:00 noon and check-out is by 11:00 AM. Early check-in or late check-out can be arranged on request, subject to availability.</p>
+      </details>
+      <details>
+        <summary>Can you help arrange a Kaziranga safari?</summary>
+        <p>Yes. Our team helps arrange jeep and elephant safari permits and timings across the park's ranges — just share your dates when you enquire.</p>
+      </details>
+      <details>
+        <summary>Do you provide airport or railway transfers?</summary>
+        <p>Airport, railway and bus-stand pick-up &amp; drop are available on request (extra charges apply), along with guided sightseeing tours.</p>
+      </details>
+      <details>
+        <summary>Is Wi-Fi available?</summary>
+        <p>Yes — Wi-Fi internet access is available in every room and across the resort.</p>
+      </details>
+      <details>
+        <summary>When is the best time to visit?</summary>
+        <p>Kaziranga National Park is typically open from November to April; the cool winter months are ideal for safaris and sightseeing.</p>
+      </details>
+      <details>
+        <summary>Do you host weddings and conferences?</summary>
+        <p>Absolutely — from a 150-seat conference hall to an open lawn for up to 1000 guests, with catering, décor and audio-visual support.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -1112,8 +1225,10 @@ footer ul a:hover{color:var(--gold-soft)}
         <ul>
           <li><a href="#about">About us</a></li>
           <li><a href="#rooms">Rooms &amp; suites</a></li>
+          <li><a href="#explore">Explore Kaziranga</a></li>
           <li><a href="#events">Events</a></li>
           <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div>
@@ -1225,6 +1340,15 @@ footer ul a:hover{color:var(--gold-soft)}
   </div>
 </footer>
 
+<!-- ============ GALLERY LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-nav lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+  <img class="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" type="button" aria-label="Next photo">&#8250;</button>
+  <div class="lb-cap" aria-hidden="true"></div>
+</div>
+
 <!-- ============ WHATSAPP FAB ============ -->
 <a class="wa-fab" href="https://wa.me/918170011344?text=Hello%20Grasslands%20Resort%2C%20I%27d%20like%20to%20enquire%20about%20a%20stay."
    target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
@@ -1309,6 +1433,40 @@ document.querySelectorAll('[data-carousel]').forEach(car=>{
   car.addEventListener('mouseleave',start);
   start();
 });
+
+// gallery lightbox
+(()=>{
+  const lb=document.getElementById('lightbox');
+  if(!lb)return;
+  const imgEl=lb.querySelector('.lb-img'),capEl=lb.querySelector('.lb-cap');
+  const thumbs=[...document.querySelectorAll('.gallery .g-item img')];
+  const items=thumbs.map(im=>({src:im.getAttribute('src'),alt:im.getAttribute('alt')||'',cap:(im.parentElement.querySelector('.cap')||{}).textContent||''}));
+  let idx=0;
+  const show=i=>{idx=(i+items.length)%items.length;imgEl.src=items[idx].src;imgEl.alt=items[idx].alt;capEl.textContent=(items[idx].cap||'').trim();};
+  const open=i=>{show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';};
+  const close=()=>{lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+  thumbs.forEach((im,i)=>im.addEventListener('click',()=>open(i)));
+  lb.querySelector('.lb-close').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',e=>{e.stopPropagation();show(idx-1);});
+  lb.querySelector('.lb-next').addEventListener('click',e=>{e.stopPropagation();show(idx+1);});
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1);
+  });
+})();
+
+// active nav link on scroll (scroll spy)
+(()=>{
+  const map={},links=[...document.querySelectorAll('nav.links a')];
+  links.forEach(a=>{const h=a.getAttribute('href');if(h&&h.charAt(0)==='#')map[h.slice(1)]=a;});
+  const sections=Object.keys(map).map(id=>document.getElementById(id)).filter(Boolean);
+  if(!sections.length)return;
+  const spy=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}});
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  sections.forEach(s=>spy.observe(s));
+})();
 
 // scroll reveals
 const io=new IntersectionObserver(entries=>{
