@@ -36,20 +36,44 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 :root{
-  --pine:#14291F;          /* deep wetland green */
-  --pine-2:#1D3A2B;
-  --ink:#1B241E;
-  --mist:#EDEFE2;          /* pale sage — page base */
-  --paper:#F6F6EC;
-  --gold:#C29A45;          /* muga silk gold */
+  color-scheme:light;
+  /* brand accents — identical in both themes */
+  --gold:#C29A45;
   --gold-soft:#D9BC77;
   --grass:#8A7A3C;
-  --line:rgba(27,36,30,.14);
+  --on-gold:#14291F;               /* fixed dark ink on gold / light chips */
+
+  /* light surfaces */
+  --mist:#EDEFE2;                  /* page base */
+  --surface:#F6F6EC;               /* cards & light sections */
+  --paper:#F6F6EC;                 /* light ink: text/marks on dark panels */
+  --ink:#1B241E;                   /* body text */
+  --ink-rgb:27,36,30;              /* soft body text via rgba() */
+  --heading:#14291F;               /* headings on light surfaces */
+  --line:rgba(var(--ink-rgb),.14);
+
+  /* intentionally-dark panels */
+  --panel:#14291F;                 /* stats, events, footer, dark cards */
   --line-dark:rgba(246,246,236,.16);
+
+  --pine:#14291F;                  /* fixed dark: text on gold, solid dark btn */
+
   --radius:14px;
   --wrap:1180px;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --mist:#0E1B14;                  /* page base */
+  --surface:#16281D;               /* cards & light sections */
+  --ink:#E7EADB;
+  --ink-rgb:231,234,219;
+  --heading:#ECEEE0;
+  --line:rgba(var(--ink-rgb),.16);
+  --panel:#1C3527;                 /* elevated panel, sits above the page */
+  --paper:#F3F4E9;                 /* keep light ink light on dark panels */
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
@@ -76,8 +100,8 @@ a{color:inherit;text-decoration:none}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
 section{padding:110px 0}
 .section-head{max-width:640px;margin-bottom:64px}
-.section-head h2{font-size:clamp(32px,4.2vw,48px);margin-top:18px;color:var(--pine)}
-.section-head p{margin-top:16px;color:rgba(27,36,30,.72);max-width:56ch}
+.section-head h2{font-size:clamp(32px,4.2vw,48px);margin-top:18px;color:var(--heading)}
+.section-head p{margin-top:16px;color:rgba(var(--ink-rgb),.72);max-width:56ch}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
@@ -133,7 +157,7 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 /* ---------- HERO ---------- */
 .hero{
   position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
-  background:var(--pine);
+  background:var(--panel);
   padding:0;
 }
 .hero-photo{position:absolute;inset:0;background:url('images/hero.jpg') center 62%/cover no-repeat;pointer-events:none}
@@ -183,7 +207,7 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 @keyframes scrollBob{0%,100%{translate:0 0}50%{translate:0 6px}}
 
 /* ---------- STAT BAND ---------- */
-.stats{background:var(--pine);color:var(--paper);padding:0}
+.stats{background:var(--panel);color:var(--paper);padding:0}
 .stats .grid{
   display:grid;grid-template-columns:repeat(4,1fr);
 }
@@ -195,13 +219,13 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 .stat .lbl{margin-top:10px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,246,236,.66)}
 
 /* ---------- ABOUT ---------- */
-.about{background:var(--paper)}
+.about{background:var(--surface)}
 .about .cols{display:grid;grid-template-columns:1.2fr .8fr;gap:72px;align-items:start}
-.about .lead{font-family:'Marcellus',serif;font-size:clamp(22px,2.6vw,29px);color:var(--pine);line-height:1.4}
-.about .body-copy{margin-top:26px;color:rgba(27,36,30,.74)}
+.about .lead{font-family:'Marcellus',serif;font-size:clamp(22px,2.6vw,29px);color:var(--heading);line-height:1.4}
+.about .body-copy{margin-top:26px;color:rgba(var(--ink-rgb),.74)}
 .about .body-copy p+p{margin-top:16px}
 .getting-card{
-  background:var(--pine);color:var(--paper);border-radius:var(--radius);
+  background:var(--panel);color:var(--paper);border-radius:var(--radius);
   padding:38px 34px;position:sticky;top:110px;
 }
 .getting-card h3{font-size:21px;color:var(--gold-soft)}
@@ -217,12 +241,12 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 /* ---------- ROOMS ---------- */
 .rooms{background:var(--mist)}
 .room-card{
-  display:grid;grid-template-columns:1fr 1fr;background:var(--paper);
+  display:grid;grid-template-columns:1fr 1fr;background:var(--surface);
   border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
   margin-bottom:48px;
 }
 .room-card.flip .room-visual{order:2}
-.room-visual{position:relative;min-height:420px;background:var(--pine);overflow:hidden}
+.room-visual{position:relative;min-height:420px;background:var(--panel);overflow:hidden}
 .room-visual svg{position:absolute;inset:0;width:100%;height:100%}
 .room-tag{
   position:absolute;top:26px;left:26px;z-index:2;
@@ -231,12 +255,12 @@ nav.links a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
   padding:9px 16px;border-radius:999px;
 }
 .room-body{padding:58px 56px}
-.room-body h3{font-size:clamp(26px,3vw,34px);color:var(--pine)}
-.room-body .desc{margin-top:18px;color:rgba(27,36,30,.72)}
+.room-body h3{font-size:clamp(26px,3vw,34px);color:var(--heading)}
+.room-body .desc{margin-top:18px;color:rgba(var(--ink-rgb),.72)}
 .amenity-grid{
   margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;
 }
-.amenity{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:rgba(27,36,30,.8)}
+.amenity{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:rgba(var(--ink-rgb),.8)}
 .amenity svg{width:17px;height:17px;flex:none;stroke:var(--grass);margin-top:3px}
 details.more{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
 details.more summary{
@@ -246,12 +270,12 @@ details.more summary{
 details.more summary::-webkit-details-marker{display:none}
 details.more summary::after{content:"+";font-size:16px;transition:transform .3s}
 details.more[open] summary::after{transform:rotate(45deg)}
-details.more ul{margin-top:14px;columns:2;column-gap:32px;font-size:13.5px;color:rgba(27,36,30,.7);padding-left:18px}
+details.more ul{margin-top:14px;columns:2;column-gap:32px;font-size:13.5px;color:rgba(var(--ink-rgb),.7);padding-left:18px}
 details.more li{margin-bottom:6px;break-inside:avoid}
 .room-body .btn{margin-top:30px}
 
 /* ---------- EVENTS ---------- */
-.events{background:var(--pine);color:var(--paper);position:relative;overflow:hidden}
+.events{background:var(--panel);color:var(--paper);position:relative;overflow:hidden}
 .events .section-head h2{color:var(--paper)}
 .events .section-head p{color:rgba(246,246,236,.7)}
 .events .eyebrow{color:var(--gold-soft)}
@@ -280,7 +304,7 @@ details.more li{margin-bottom:6px;break-inside:avoid}
 .events-note{margin-top:34px;color:rgba(246,246,236,.62);font-size:14px;max-width:70ch}
 
 /* ---------- FACILITIES ---------- */
-.facilities{background:var(--paper)}
+.facilities{background:var(--surface)}
 .fac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .fac-card{
   border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;background:var(--mist);
@@ -288,29 +312,29 @@ details.more li{margin-bottom:6px;break-inside:avoid}
 }
 .fac-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,41,31,.35)}
 .fac-card .ico{
-  width:52px;height:52px;border-radius:50%;background:var(--pine);
+  width:52px;height:52px;border-radius:50%;background:var(--panel);
   display:grid;place-items:center;margin-bottom:22px;
 }
 .fac-card .ico svg{width:24px;height:24px;stroke:var(--gold-soft)}
-.fac-card h3{font-size:20px;color:var(--pine)}
+.fac-card h3{font-size:20px;color:var(--heading)}
 .fac-card ul{list-style:none;margin-top:16px}
 .fac-card li{
-  font-size:14px;color:rgba(27,36,30,.74);padding:7px 0 7px 18px;position:relative;
+  font-size:14px;color:rgba(var(--ink-rgb),.74);padding:7px 0 7px 18px;position:relative;
 }
 .fac-card li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.fac-card li em{font-style:normal;color:rgba(27,36,30,.5);font-size:12.5px}
+.fac-card li em{font-style:normal;color:rgba(var(--ink-rgb),.5);font-size:12.5px}
 
 /* ---------- CONTACT ---------- */
 .contact{background:var(--mist)}
 .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
-.contact-info h3{font-size:20px;color:var(--pine);margin-top:34px}
+.contact-info h3{font-size:20px;color:var(--heading);margin-top:34px}
 .contact-info h3:first-of-type{margin-top:0}
-.contact-info p{margin-top:8px;color:rgba(27,36,30,.74);font-size:15px}
-.contact-info .big{font-family:'Marcellus',serif;font-size:24px;color:var(--pine);margin-top:6px}
+.contact-info p{margin-top:8px;color:rgba(var(--ink-rgb),.74);font-size:15px}
+.contact-info .big{font-family:'Marcellus',serif;font-size:24px;color:var(--heading);margin-top:6px}
 .form-card{
-  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:46px 44px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:46px 44px;
 }
-.form-card h3{font-size:24px;color:var(--pine);margin-bottom:26px}
+.form-card h3{font-size:24px;color:var(--heading);margin-bottom:26px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
 .field label{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--grass);margin-bottom:8px}
 .field input,.field select,.field textarea{
@@ -319,14 +343,14 @@ details.more li{margin-bottom:6px;break-inside:avoid}
 }
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
 .field.full{grid-column:1/-1}
-.form-note{font-size:12.5px;color:rgba(27,36,30,.55);margin-top:14px}
+.form-note{font-size:12.5px;color:rgba(var(--ink-rgb),.55);margin-top:14px}
 
 /* map + reviews */
 .map-row{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;margin-top:64px}
-.map-frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--paper)}
+.map-frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--surface)}
 .map-frame iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
 .review-card{
-  background:var(--pine);color:var(--paper);border-radius:var(--radius);
+  background:var(--panel);color:var(--paper);border-radius:var(--radius);
   padding:42px 38px;display:flex;flex-direction:column;justify-content:center;
 }
 .review-card h3{font-size:22px;color:var(--gold-soft)}
@@ -344,7 +368,7 @@ details.more li{margin-bottom:6px;break-inside:avoid}
 .review-card .btn.ghost:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--pine);color:rgba(246,246,236,.7);position:relative;overflow:hidden}
+footer{background:var(--panel);color:rgba(246,246,236,.7);position:relative;overflow:hidden}
 footer .wrap{padding-top:70px;padding-bottom:132px;position:relative;z-index:2}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line-dark)}
 footer .logo .name{color:var(--paper)}
@@ -405,7 +429,7 @@ footer ul a:hover{color:var(--gold-soft)}
 .about-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
 .about-photo.wide{margin:34px 0 0}
 .about-photo.wide img{aspect-ratio:16/8}
-.leisure{background:var(--paper)}
+.leisure{background:var(--surface)}
 .leisure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .leisure-card{
   border-radius:var(--radius);overflow:hidden;background:var(--mist);border:1px solid var(--line);
@@ -414,8 +438,8 @@ footer ul a:hover{color:var(--gold-soft)}
 .leisure-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(20,41,31,.35)}
 .leisure-card img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .leisure-card .txt{padding:26px 28px 30px}
-.leisure-card h3{font-size:20px;color:var(--pine)}
-.leisure-card p{margin-top:10px;font-size:14px;color:rgba(27,36,30,.72)}
+.leisure-card h3{font-size:20px;color:var(--heading)}
+.leisure-card p{margin-top:10px;font-size:14px;color:rgba(var(--ink-rgb),.72)}
 .event-img{border-radius:10px;overflow:hidden;margin-top:26px}
 .event-img img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
 .gallery-sec{background:var(--mist)}
@@ -447,7 +471,7 @@ footer ul a:hover{color:var(--gold-soft)}
 .wa-fab svg{width:32px;height:32px;fill:#fff}
 .wa-fab .wa-label{
   position:absolute;right:72px;white-space:nowrap;
-  background:var(--pine);color:var(--paper);
+  background:var(--panel);color:var(--paper);
   padding:9px 15px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.02em;
   box-shadow:0 8px 20px -8px rgba(20,41,31,.5);
   opacity:0;transform:translateX(8px);pointer-events:none;
@@ -487,7 +511,7 @@ footer ul a:hover{color:var(--gold-soft)}
 @media (max-width:720px){
   nav.links{
     position:fixed;top:0;left:0;right:0;height:100vh;height:100dvh;
-    background:var(--pine);flex-direction:column;justify-content:center;
+    background:var(--panel);flex-direction:column;justify-content:center;
     gap:30px;transform:translateY(-100%);visibility:hidden;
     transition:transform .4s ease,visibility 0s linear .4s;z-index:55;
   }
@@ -506,6 +530,23 @@ footer ul a:hover{color:var(--gold-soft)}
   .gallery{grid-template-columns:1fr;grid-auto-rows:210px}
   .g-item.wide,.g-item.tall{grid-column:auto;grid-row:auto}
 }
+
+/* ---------- THEME TOGGLE ---------- */
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:40px;height:40px;border-radius:50%;cursor:pointer;
+  background:transparent;border:1px solid rgba(246,246,236,.5);color:var(--paper);
+  transition:background .25s,border-color .25s,color .25s;
+}
+.theme-toggle:hover{border-color:var(--gold-soft);color:var(--gold-soft)}
+.theme-toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.theme-toggle .ico-moon{display:none}
+[data-theme="dark"] .theme-toggle .ico-sun{display:none}
+[data-theme="dark"] .theme-toggle .ico-moon{display:block}
+
+/* dark-mode: the solid dark button reads as gold on dark surfaces */
+[data-theme="dark"] .btn.dark{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+[data-theme="dark"] .btn.dark:hover{background:transparent;color:var(--gold)}
 </style>
 
 <!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
@@ -591,6 +632,10 @@ footer ul a:hover{color:var(--gold-soft)}
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+      <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12h2.6M18.9 12h2.6M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+      <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
     <a class="btn" href="#contact">Book your stay</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -786,7 +831,7 @@ footer ul a:hover{color:var(--gold-soft)}
         <div class="amenity-grid">
           <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12h16v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5zM4 12V6a2 2 0 012-2h2v4"/></svg>Jacuzzi bathtub, hot &amp; cold water</div>
           <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18h18M6 12V8a2 2 0 012-2h8a2 2 0 012 2v4"/></svg>Separate living room &amp; lounge</div>
-          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 9h12"/></svg>Mini-bar &amp; fridge <em style="font-style:normal;color:rgba(27,36,30,.5)">(chargeable)</em></div>
+          <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 9h12"/></svg>Mini-bar &amp; fridge <em style="font-style:normal;color:rgba(var(--ink-rgb),.5)">(chargeable)</em></div>
           <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M5 10V7h14v3"/></svg>Plush king bed, premium bedding</div>
           <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12a7 7 0 0114 0M2 12a10 10 0 0120 0M12 16h.01"/></svg>Wi-Fi internet access</div>
           <div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M9 21h6"/></svg>Flat-screen TV, satellite channels</div>
@@ -980,8 +1025,8 @@ footer ul a:hover{color:var(--gold-soft)}
         <p class="big">Grasslands Resort</p>
         <p>National Highway 37, beside Kaziranga National Park<br>Assam, India</p>
         <h3>Reservations</h3>
-        <p>Phone: <a href="tel:+918170011344" style="color:var(--pine);font-weight:600">+91 81700 11344</a><br>
-        Email: <a href="mailto:grasslandresortskaziranga@gmail.com" style="color:var(--pine);font-weight:600">grasslandresortskaziranga@gmail.com</a></p>
+        <p>Phone: <a href="tel:+918170011344" style="color:var(--heading);font-weight:600">+91 81700 11344</a><br>
+        Email: <a href="mailto:grasslandresortskaziranga@gmail.com" style="color:var(--heading);font-weight:600">grasslandresortskaziranga@gmail.com</a></p>
         <h3>A unit of</h3>
         <p>Greenlane Hotels &amp; Resorts Pvt Ltd</p>
       </div>
@@ -1190,6 +1235,12 @@ footer ul a:hover{color:var(--gold-soft)}
 </a>
 
 <script>
+// theme toggle
+(()=>{const root=document.documentElement,btn=document.getElementById('themeToggle'),meta=document.querySelector('meta[name="theme-color"]');
+const sync=()=>{const dark=root.getAttribute('data-theme')==='dark';if(btn)btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');if(meta)meta.setAttribute('content',dark?'#0E1B14':'#14291F');};
+sync();
+if(btn)btn.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}sync();});})();
+
 // nav solid state + scroll-down FAB (visible only near the top)
 const header=document.getElementById('header');
 const scrollFab=document.getElementById('scrollFab');
